@@ -8,8 +8,9 @@ import {
 import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
 import { useMemo } from "react";
 import Progress from "components/progress";
+
 const LeavesTable = (props) => {
-  const { columnsData, tableData } = props;
+  const { columnsData, tableData, title } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -36,14 +37,14 @@ const LeavesTable = (props) => {
 
   return (
     <Card extra={"w-full h-full p-4 sm:overflow-x-auto"}>
-      <div class="relative flex items-center justify-between">
-        <div class="text-xl font-bold text-navy-700 dark:text-white">
-          Leaves
-        </div>
-        {/* <CardMenu /> */}
+      <div className="relative flex items-center justify-between">
+        {title && (
+          <div className="mb-6 text-xl font-bold text-navy-700 dark:text-white">
+            Leaves
+          </div>
+        )}
       </div>
-
-      <div class="mt-8 h-full overflow-x-scroll xl:overflow-hidden">
+      <div className="mt-2 h-full overflow-x-scroll xl:overflow-hidden">
         <table {...getTableProps()} className="w-full">
           <thead>
             {headerGroups.map((headerGroup, index) => (

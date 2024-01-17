@@ -1,10 +1,11 @@
 import Widget from "components/widget/Widget";
 import Clock from "./components/Clock";
 import Week from "./components/Week";
-import { MdBarChart } from "react-icons/md";
+import { MdAccessTime, MdBarChart } from "react-icons/md";
 import { columnsDataLeaves } from "./variables/columnsData";
 import tableDataComplex from "./variables/tableDataComplex.json";
 import LeavesTable from "views/ess/tables/components/LeavesTable";
+import PayrollsTable from "../tables/components/PayrollsTable";
 
 const Home = () => {
   return (
@@ -22,12 +23,12 @@ const Home = () => {
               extraClass="col-span-1 lg:col-span-2 3xl:col-span-1"
             />
             <Widget
-              icon={<MdBarChart className="h-7 w-7" />}
+              icon={<MdAccessTime className="h-7 w-7" />}
               title={"Clock In"}
               subtitle={"07:49:40"}
             />
             <Widget
-              icon={<MdBarChart className="h-7 w-7" />}
+              icon={<MdAccessTime className="h-7 w-7" />}
               title={"Clock Out"}
               subtitle={"--:--:--"}
             />
@@ -38,9 +39,17 @@ const Home = () => {
         </div>
       </div>
       <div className="mt-5 grid grid-cols-1">
+        <PayrollsTable
+          columnsData={columnsDataLeaves}
+          tableData={tableDataComplex}
+          title={true}
+        />
+      </div>
+      <div className="mt-5 grid grid-cols-1">
         <LeavesTable
           columnsData={columnsDataLeaves}
           tableData={tableDataComplex}
+          title={true}
         />
       </div>
     </div>
