@@ -15,38 +15,38 @@ const Week = () => {
       </div>
       {/* Cards */}
       <div className="grid grid-cols-7 gap-2 sm:gap-4 px-0">
-        <div className="bg-white shadow px-1 py-4 lg:p-4 rounded text-center">
-          <p className="text-sm font-semibold text-gray-800 mb-2 xl:text-lg">SUN</p>
+        <div className="bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none px-1 py-4 lg:p-4 rounded text-center">
+          <p className="text-sm font-semibold text-gray-600 mb-2 xl:text-lg">SUN</p>
           <p className="text-xs sm:text-sm xl:text-lg">REST</p>
           <p className="text-xs sm:text-sm xl:text-lg">DAY</p>
         </div>
-        <div className="bg-white shadow px-1 py-4 lg:p-4 rounded text-center">
-          <p className="text-sm font-semibold text-gray-800 mb-2 xl:text-lg">NOW</p>
+        <div className="bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none px-1 py-4 lg:p-4 rounded text-center">
+          <p className="text-sm font-semibold text-gray-600 mb-2 xl:text-lg">NOW</p>
           <p className="text-xs sm:text-sm xl:text-lg">08:00</p>
           <p className="text-xs sm:text-sm xl:text-lg">17:00</p>
         </div>
-        <div className="bg-white shadow px-1 py-4 lg:p-4 rounded text-center">
-          <p className="text-sm font-semibold text-gray-800 mb-2 xl:text-lg">TUE</p>
+        <div className="bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none px-1 py-4 lg:p-4 rounded text-center">
+          <p className="text-sm font-semibold text-gray-600 mb-2 xl:text-lg">TUE</p>
           <p className="text-xs sm:text-sm xl:text-lg">08:00</p>
           <p className="text-xs sm:text-sm xl:text-lg">17:00</p>
         </div>
-        <div className="bg-white shadow px-1 py-4 lg:p-4 rounded text-center">
-          <p className="text-sm font-semibold text-gray-800 mb-2 xl:text-lg">WED</p>
+        <div className="bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none px-1 py-4 lg:p-4 rounded text-center">
+          <p className="text-sm font-semibold text-gray-600 mb-2 xl:text-lg">WED</p>
           <p className="text-xs sm:text-sm xl:text-lg">08:00</p>
           <p className="text-xs sm:text-sm xl:text-lg">17:00</p>
         </div>
-        <div className="bg-white shadow px-1 py-4 lg:p-4 rounded text-center">
-          <p className="text-sm font-semibold text-gray-800 mb-2 xl:text-lg">THU</p>
+        <div className="bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none px-1 py-4 lg:p-4 rounded text-center">
+          <p className="text-sm font-semibold text-gray-600 mb-2 xl:text-lg">THU</p>
           <p className="text-xs sm:text-sm xl:text-lg">08:00</p>
           <p className="text-xs sm:text-sm xl:text-lg">17:00</p>
         </div>
-        <div className="bg-white shadow px-1 py-4 lg:p-4 rounded text-center">
-          <p className="text-sm font-semibold text-gray-800 mb-2 xl:text-lg">FRI</p>
+        <div className="bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none px-1 py-4 lg:p-4 rounded text-center">
+          <p className="text-sm font-semibold text-gray-600 mb-2 xl:text-lg">FRI</p>
           <p className="text-xs sm:text-sm xl:text-lg">08:00</p>
           <p className="text-xs sm:text-sm xl:text-lg">17:00</p>
         </div>
-        <div className="bg-white shadow px-1 py-4 lg:p-4 rounded text-center">
-          <p className="text-sm font-semibold text-gray-800 mb-2 xl:text-lg">SAT</p>
+        <div className="bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none px-1 py-4 lg:p-4 rounded text-center">
+          <p className="text-sm font-semibold text-gray-600 mb-2 xl:text-lg">SAT</p>
           <p className="text-xs sm:text-sm xl:text-lg">REST</p>
           <p className="text-xs sm:text-sm xl:text-lg">DAY</p>
         </div>
