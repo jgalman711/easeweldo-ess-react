@@ -77,7 +77,7 @@ const routes = [
   {
     name: "Sign In",
     layout: "/auth",
-    path: "sign-in",
+    path: "login",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
   }
