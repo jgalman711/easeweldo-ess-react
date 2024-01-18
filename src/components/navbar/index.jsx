@@ -194,7 +194,7 @@ const Navbar = (props) => {
                   href="profile"
                   className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
-                  Profile Settings
+                  Edit Profile
                 </a>
                 <a
                   href=" "

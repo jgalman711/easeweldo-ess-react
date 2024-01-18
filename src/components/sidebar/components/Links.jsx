@@ -18,9 +18,7 @@ export function SidebarLinks(props) {
   const createLinks = (routes) => {
     return routes.map((route, index) => {
       if (
-        route.layout === "/ess" ||
-        route.layout === "/admin" ||
-        route.layout === "/auth"
+        route.sidebar !== false
       ) {
         return (
           <Link key={index} to={route.layout + "/" + route.path}>
