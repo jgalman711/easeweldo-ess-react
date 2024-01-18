@@ -1,10 +1,13 @@
 import InputField from "components/fields/InputField";
 import Checkbox from "components/checkbox";
 import React, { useState } from 'react';
+import client from "api/axios"
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -15,29 +18,28 @@ export default function SignIn() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('https://api.easeweldo.tech/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email_address: email,
-          password: password,
-        }),
-      });
 
-      if (response.ok) {
-        // Handle successful login
-        const data = await response.json();
-        console.log(data);
-      } else {
-        // Handle login error
-        const errorData = await response.json();
-        console.error(errorData);
-      }
+    try {
+      const response = await client.post('/login', {
+        email_address: email,
+        password: password,
+      });
+      const authToken = response.data.data.token;
+      localStorage.setItem('authToken', authToken);
+      navigate('/ess');
     } catch (error) {
-      console.error('Error during login:', error);
+      // Handle login error
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        console.error('Server responded with an error status:', error.response.status);
+        console.error('Error message from server:', error.response.data.message);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('No response received from the server');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error setting up the request:', error.message);
+      }
     }
   };
 
