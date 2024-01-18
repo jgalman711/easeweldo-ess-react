@@ -6,6 +6,7 @@ import Profile from "views/ess/profile";
 import Payrolls from "views/ess/payrolls";
 import Timesheet from "views/ess/timesheet";
 import SignIn from "views/auth/SignIn";
+import ForgotPassword from "views/auth/ForgotPassword";
 
 // Icon Imports
 import {
@@ -60,6 +61,14 @@ const routes = [
     path: "login",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
+    sidebar: false
+  },
+  {
+    name: "Forgot Password",
+    layout: "/auth",
+    path: "forgot-password",
+    icon: <MdLock className="h-6 w-6" />,
+    component: <ForgotPassword />,
     sidebar: false
   }
 ];
