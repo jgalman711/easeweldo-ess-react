@@ -24,13 +24,13 @@ const EmergencyContact = () => {
           label="Relationship"
           id="relationship"
           type="text"
-          extra="col-span-4 sm:col-span-2"
+          extra="col-span-4 lg:col-span-2"
         />
          <InputField
           label="Emergency Contact Number"
           id="emergency_contact_number"
           type="text"
-          extra="col-span-4 sm:col-span-2"
+          extra="col-span-4 lg:col-span-2"
         />
       </div>
     </Card>

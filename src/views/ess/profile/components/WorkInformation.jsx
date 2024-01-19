@@ -22,6 +22,18 @@ const WorkInformation = () => {
           extra="col-span-4"
         />
         <InputField
+          label="Employment Type"
+          id="type"
+          type="text"
+          extra="col-span-2"
+        />
+        <InputField
+          label="Status"
+          id="status"
+          type="text"
+          extra="col-span-2"
+        />
+        <InputField
           label="Job Title"
           id="job_title"
           type="text"
@@ -42,18 +54,6 @@ const WorkInformation = () => {
         <InputField
           label="Date Terminated"
           id="date_hired"
-          type="text"
-          extra="col-span-2"
-        />
-        <InputField
-          label="Status"
-          id="status"
-          type="text"
-          extra="col-span-2"
-        />
-        <InputField
-          label="Employment Type"
-          id="type"
           type="text"
           extra="col-span-2"
         />

@@ -1,7 +1,6 @@
-import AdditionalInformation from "./components/AdditionalInformation";
+import BankInformation from "./components/BankInformation";
 import Banner from "./components/Banner";
-import ContactInformation from "./components/ContactInformation";
-import EmergencyContact from "./components/EmergencyContact";
+// import EmergencyContact from "./components/EmergencyContact";
 import IdentificationNumbers from "./components/IdentificationNumbers";
 import PersonalInformation from "./components/PersonalInformation";
 import WorkInformation from "./components/WorkInformation";
@@ -12,13 +11,12 @@ const ProfileOverview = () => {
       <div className="w-ful mt-3 flex flex-col gap-5">
         <Banner />
         <PersonalInformation />
-        <ContactInformation />
         <IdentificationNumbers />
       </div>
       <div className="w-full mt-3 flex flex-col gap-5">
         <WorkInformation />
-        <EmergencyContact />
-        <AdditionalInformation />
+        <BankInformation />
+        {/* <EmergencyContact /> */}
       </div>
     </div>
   );
