@@ -58,44 +58,46 @@ export default function SignIn() {
           extraClass="mb-4"
         />}
 
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Email"
-          id="email"
-          type="email"
-          onChange={handleEmailChange}
-        />
+        <form onSubmit={handleFormSubmit}>
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Email"
+            id="email"
+            type="email"
+            onChange={handleEmailChange}
+          />
 
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Password"
-          id="password"
-          type="password"
-          onChange={handlePasswordChange}
-        />
-        {/* Checkbox */}
-        <div className="mb-4 flex items-center justify-between px-2">
-          <div className="flex items-center">
-            <Checkbox
-              onChange={handleRemember}
-              checked={rememberMe}
-            />
-            <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
-              Keep me logged In
-            </p>
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Password"
+            id="password"
+            type="password"
+            onChange={handlePasswordChange}
+          />
+          {/* Checkbox */}
+          <div className="mb-4 flex items-center justify-between px-2">
+            <div className="flex items-center">
+              <Checkbox
+                onChange={handleRemember}
+                checked={rememberMe}
+              />
+              <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
+                Keep me logged In
+              </p>
+            </div>
+            <Link
+              to="/auth/forgot-password"
+              className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
+            >
+              Forgot Password?
+            </Link>
           </div>
-          <Link
-            to="/auth/forgot-password"
-            className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
-          >
-            Forgot Password?
-          </Link>
-        </div>
-        <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200" onClick={handleFormSubmit}>
-          Sign In
-        </button>
+          <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200" type="submit">
+            Sign In
+          </button>
+        </form>
       </div>
     </div>
   );
