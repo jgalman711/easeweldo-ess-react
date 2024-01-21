@@ -1,9 +1,10 @@
 import React from "react";
-import avatar from "assets/img/avatars/avatar11.png";
 import banner from "assets/img/profile/banner.png";
 import Card from "components/card";
 
 const Banner = ({ data }) => {
+  const profilePicture = localStorage.getItem('profilePicture');
+  const storageUrl = process.env.REACT_APP_ES_STORAGE_URL
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
       {/* Background and profile */}
@@ -12,7 +13,7 @@ const Banner = ({ data }) => {
         style={{ backgroundImage: `url(${banner})` }}
       >
         <div className="absolute -bottom-12 flex h-[165px] w-[165px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-          <img className="h-full w-full rounded-full" src={avatar} alt="" />
+          <img className="h-full w-full rounded-full" src={storageUrl + profilePicture} alt="" />
         </div>
       </div>
 

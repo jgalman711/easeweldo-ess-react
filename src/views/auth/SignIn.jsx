@@ -38,6 +38,7 @@ export default function SignIn() {
       localStorage.setItem('firstName', employee.first_name);
       localStorage.setItem('lastName', employee.last_name);
       localStorage.setItem('jobTitle', employee.job_title);
+      localStorage.setItem('profilePicture', employee.profile_picture);
 
       window.location = '/ess';
     } catch (error) {

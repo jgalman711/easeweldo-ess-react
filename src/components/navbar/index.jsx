@@ -9,11 +9,13 @@ import {
   IoMdNotificationsOutline,
   IoMdInformationCircleOutline,
 } from "react-icons/io";
-import avatar from "assets/img/avatars/avatar4.png";
 
 const Navbar = (props) => {
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
+  const firstName = localStorage.getItem('firstName');
+  const profilePicture = localStorage.getItem('profilePicture');
+  const storageUrl = process.env.REACT_APP_ES_STORAGE_URL
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
@@ -174,8 +176,8 @@ const Navbar = (props) => {
           button={
             <img
               className="h-10 w-10 rounded-full"
-              src={avatar}
-              alt="Elon Musk"
+              src={storageUrl + profilePicture}
+              alt=" "
             />
           }
           children={
@@ -183,7 +185,7 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    👋 Hey, Adela
+                    👋 Hey, {firstName}
                   </p>{" "}
                 </div>
               </div>

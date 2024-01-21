@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-    baseURL: "https://api.easeweldo.tech/api/"
+    baseURL: process.env.REACT_APP_ES_BASE_URL,
 });
 
 client.interceptors.request.use((config) => {
