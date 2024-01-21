@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useState } from 'react';
 import Card from "components/card";
 import InputField from "components/fields/InputField";
 import Button from "components/button/Button";
+import client from "api/axios";
 
 const IdentificationNumbers = ({ data }) => {
+
+  const companySlug = localStorage.getItem('companySlug');
+  const employeeId = localStorage.getItem('id');
+
+  const [formData, setFormData] = useState({
+    sss_number: (data?.data?.sss_number || '').toString(),
+    pagibig_number: (data?.data?.pagibig_number || '').toString(),
+    philhealth_number: (data?.data?.philhealth_number || '').toString(),
+    tax_identification_number: (data?.data?.tax_identification_number || '').toString(),
+  });
+
+  const handleInputChange = (e) => {
+    setFormData((prevData) => ({
+        ...prevData,
+        [e.target.id]: e.target.value,
+      }));
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await client.put(`/companies/${companySlug}/employees/${employeeId}`, formData);
+    } catch (error) {
+    }
+  };
+
   return (
     <Card extra={"w-full p-4"}>
       <div className="ml-3 pb-5 w-full">
@@ -21,28 +48,32 @@ const IdentificationNumbers = ({ data }) => {
           id="sss_number"
           type="text"
           extra="col-span-4"
-          value= {data?.data?.sss_number || ''}
+          value={formData.sss_number !== '' ? formData.sss_number : data?.data?.sss_number || ''}
+          onChange={handleInputChange}
         />
         <InputField
           label="PagIbig"
           id="pagibig_number"
           type="text"
           extra="col-span-4"
-          value= {data?.data?.pagibig_number || ''}
+          value={formData.pagibig_number !== '' ? formData.pagibig_number : data?.data?.pagibig_number || ''}
+          onChange={handleInputChange}
         />
         <InputField
           label="PhilHealth"
           id="philhealth_number"
           type="text"
           extra="col-span-4"
-          value= {data?.data?.philhealth_number || ''}
+          value={formData.philhealth_number !== '' ? formData.philhealth_number : data?.data?.philhealth_number || ''}
+          onChange={handleInputChange}
         />
         <InputField
           label="Tax Identification Number"
           id="tax_identification_number"
           type="text"
           extra="col-span-4"
-          value= {data?.data?.tax_identification_number || ''}
+          value={formData.tax_identification_number !== '' ? formData.tax_identification_number : data?.data?.tax_identification_number || ''}
+          onChange={handleInputChange}
         />
       </div>
       <div className="col-span-4 flex justify-end my-3">
@@ -50,6 +81,7 @@ const IdentificationNumbers = ({ data }) => {
           id="saveIdentificationNumber"
           label="Save Changes"
           status="positive"
+          onClick={handleFormSubmit}
         />
       </div>
     </Card>

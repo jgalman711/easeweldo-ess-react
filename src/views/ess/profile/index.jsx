@@ -3,7 +3,7 @@ import Banner from "./components/Banner";
 import IdentificationNumbers from "./components/IdentificationNumbers";
 import PersonalInformation from "./components/PersonalInformation";
 import WorkInformation from "./components/WorkInformation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import client from "api/axios"
 
 const ProfileOverview = () => {
@@ -11,13 +11,14 @@ const ProfileOverview = () => {
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
 
-  const fetchInfo = () => {
-    return client
-      .get(`/companies/${companySlug}/employees/${employeeId}`)
-      .then((response) => setData(response.data));
-  }
-
-  fetchInfo();
+  useEffect(() => {
+    const fetchInfo = () => {
+      return client
+        .get(`/companies/${companySlug}/employees/${employeeId}`)
+        .then((response) => setData(response.data));
+    }
+    fetchInfo();
+  }, [companySlug, employeeId])
 
   return (
     <div className="flex w-full grid grid-cols-1 md:grid-cols-2 gap-5">

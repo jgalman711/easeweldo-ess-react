@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ label, status, id}) => {
+const Button = ({ label, status, id, onClick}) => {
   let buttonClass = "px-4 py-3 linear flex cursor-pointer items-center justify-center rounded-xl font-bold transition duration-200";
 
   if (status === "positive") {
@@ -12,7 +12,7 @@ const Button = ({ label, status, id}) => {
   }
 
   return (
-    <button className={buttonClass} id={id}>
+    <button className={buttonClass} id={id} onClick={onClick}>
       {label}
     </button>
   );
