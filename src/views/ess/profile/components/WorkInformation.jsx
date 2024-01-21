@@ -2,7 +2,7 @@ import React from "react";
 import InputField from "components/fields/InputField";
 import Card from "components/card";
 
-const WorkInformation = () => {
+const WorkInformation = ({ data }) => {
   return (
     <Card extra={"w-full p-4"}>
       <div className="ml-3 pb-5 w-full">
@@ -20,42 +20,56 @@ const WorkInformation = () => {
           id="company"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.company || ''}
+          disabled={true}
         />
         <InputField
           label="Employment Type"
-          id="type"
+          id="employment_type"
           type="text"
           extra="col-span-2"
+          value= {data?.data?.employment_type || ''}
+          disabled={true}
         />
         <InputField
           label="Status"
-          id="status"
+          id="employment_status"
           type="text"
           extra="col-span-2"
+          value= {data?.data?.employment_status || ''}
+          disabled={true}
         />
         <InputField
           label="Job Title"
           id="job_title"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.job_title || ''}
+          disabled={true}
         />
          <InputField
           label="Department"
           id="department"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.department || ''}
+          disabled={true}
         />
         <InputField
           label="Date Hired"
-          id="date_hired"
+          id="date_of_hire"
           type="text"
           extra="col-span-2"
+          value= {data?.data?.date_of_hire || ''}
+          disabled={true}
         />
         <InputField
           label="Date Terminated"
-          id="date_hired"
+          id="date_of_termination"
           type="text"
           extra="col-span-2"
+          value= {data?.data?.date_of_termination || ''}
+          disabled={true}
         />
       </div>
     </Card>

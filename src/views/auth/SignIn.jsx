@@ -28,8 +28,17 @@ export default function SignIn() {
         password: password,
         remember: rememberMe
       });
-      const authToken = response.data.data.token;
+      const authToken = response.data?.data?.token;
+      const employee = response.data?.data?.employee;
+      const company = response.data?.data?.companies[0];
+
       localStorage.setItem('authToken', authToken);
+      localStorage.setItem('companySlug', company.slug);
+      localStorage.setItem('id', employee.id);
+      localStorage.setItem('firstName', employee.first_name);
+      localStorage.setItem('lastName', employee.last_name);
+      localStorage.setItem('jobTitle', employee.job_title);
+
       window.location = '/ess';
     } catch (error) {
       if (error.response) {

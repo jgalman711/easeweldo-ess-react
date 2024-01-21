@@ -1,8 +1,9 @@
 import React from "react";
 import Card from "components/card";
 import InputField from "components/fields/InputField";
+import Button from "components/button/Button";
 
-const PersonalInformation = () => {
+const PersonalInformation = ({ data }) => {
   return (
     <Card extra={"w-full p-4"}>
     <div className="ml-3 pb-5 w-full">
@@ -20,30 +21,43 @@ const PersonalInformation = () => {
         id="email_address"
         type="text"
         extra="col-span-4"
+        value={data?.data?.email_address || ''}
       />
       <InputField
         label="Mobile Number"
         id="mobile_number"
         type="text"
         extra="col-span-2"
+        value={data?.data?.mobile_number || ''}
       />
       <InputField
         label="Date of Birth"
         id="date_of_birth"
         type="text"
         extra="col-span-2"
+        value={data?.data?.date_of_birth || ''}
       />
       <InputField
         label="Address Line"
         id="address_line"
         type="text"
         extra="col-span-4"
+        value={data?.data?.address_line || ''}
+
       />
       <InputField
         label="Barangay / Town / City / Province"
         id="brgy_town_city_province"
         type="text"
         extra="col-span-4"
+        value={data?.data?.barangay_town_city_province || ''}
+      />
+    </div>
+    <div className="col-span-4 flex justify-end my-3">
+      <Button
+        id="savePersonalInformation"
+        label="Save Changes"
+        status="positive"
       />
     </div>
   </Card>

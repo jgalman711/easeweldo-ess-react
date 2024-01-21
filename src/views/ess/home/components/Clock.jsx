@@ -4,6 +4,11 @@ import banner from "assets/img/profile/banner.png";
 import Card from "components/card";
 
 const Clock = () => {
+
+  const firstName = localStorage.getItem('firstName');
+  const lastName = localStorage.getItem('lastName');
+  const jobTitle = localStorage.getItem('jobTitle');
+
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
       {/* Background and profile */}
@@ -19,9 +24,9 @@ const Clock = () => {
       {/* Name and position */}
       <div className="mt-16 flex flex-col items-center mb-auto">
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-          Adela Parkson
+          {firstName} {lastName}
         </h4>
-        <p className="text-base font-normal text-gray-600">Product Manager</p>
+        <p className="text-base font-normal text-gray-600">{jobTitle}</p>
       </div>
 
       {/* Post followers */}

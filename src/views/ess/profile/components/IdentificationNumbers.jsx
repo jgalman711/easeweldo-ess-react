@@ -1,8 +1,9 @@
 import React from "react";
 import Card from "components/card";
 import InputField from "components/fields/InputField";
+import Button from "components/button/Button";
 
-const IdentificationNumbers = () => {
+const IdentificationNumbers = ({ data }) => {
   return (
     <Card extra={"w-full p-4"}>
       <div className="ml-3 pb-5 w-full">
@@ -20,24 +21,35 @@ const IdentificationNumbers = () => {
           id="sss_number"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.sss_number || ''}
         />
         <InputField
           label="PagIbig"
           id="pagibig_number"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.pagibig_number || ''}
         />
         <InputField
           label="PhilHealth"
           id="philhealth_number"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.philhealth_number || ''}
         />
         <InputField
           label="Tax Identification Number"
-          id="tin"
+          id="tax_identification_number"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.tax_identification_number || ''}
+        />
+      </div>
+      <div className="col-span-4 flex justify-end my-3">
+        <Button
+          id="saveIdentificationNumber"
+          label="Save Changes"
+          status="positive"
         />
       </div>
     </Card>

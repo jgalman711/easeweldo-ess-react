@@ -1,8 +1,9 @@
 import React from "react";
 import Card from "components/card";
 import InputField from "components/fields/InputField";
+import Button from "components/button/Button";
 
-const BankInformation = () => {
+const BankInformation = ({ data }) => {
   return (
     <Card extra={"w-full p-4"}>
       <div className="ml-3 pb-5 w-full">
@@ -20,18 +21,28 @@ const BankInformation = () => {
           id="bank_name"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.bank_name || ''}
         />
         <InputField
           label="Account Number"
-          id="account_number"
+          id="bank_account_number"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.bank_account_number || ''}
         />
         <InputField
           label="Account Name"
-          id="account_name"
+          id="bank_account_name"
           type="text"
           extra="col-span-4"
+          value= {data?.data?.bank_account_name || ''}
+        />
+      </div>
+      <div className="col-span-4 flex justify-end my-3">
+        <Button
+          id="saveBankInformation"
+          label="Save Changes"
+          status="positive"
         />
       </div>
     </Card>
