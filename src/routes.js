@@ -15,7 +15,7 @@ import {
   MdLock,
   MdWork,
   MdAccessTimeFilled,
-  MdCalendarToday,
+  MdDateRange,
 } from "react-icons/md";
 import Leaves from "views/ess/leaves";
 
@@ -45,7 +45,7 @@ const routes = [
     name: "Leaves",
     layout: "/ess",
     path: "leaves",
-    icon: <MdCalendarToday className="h-6 w-6" />,
+    icon: <MdDateRange className="h-6 w-6" />,
     component: <Leaves />,
   },
   {

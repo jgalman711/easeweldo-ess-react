@@ -1,7 +1,7 @@
 import Widget from "components/widget/Widget";
 import Clock from "./components/Clock";
 import Week from "./components/Week";
-import { MdAccessTime, MdBarChart } from "react-icons/md";
+import { MdAccessTime, MdToday } from "react-icons/md";
 import { columnsDataLeaves } from "./variables/columnsData";
 import tableDataComplex from "./variables/tableDataComplex.json";
 import LeavesTable from "views/ess/tables/components/LeavesTable";
@@ -17,7 +17,7 @@ const Home = () => {
         <div className="col-span-12 sm:col-span-7 3xl:col-span-8">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-2 3xl:grid-cols-3">
             <Widget
-              icon={<MdBarChart className="h-7 w-7" />}
+              icon={<MdToday className="h-7 w-7" />}
               title={"Work Today"}
               subtitle={"08:00 - 17:00"}
               extraClass="col-span-1 lg:col-span-2 3xl:col-span-1"
