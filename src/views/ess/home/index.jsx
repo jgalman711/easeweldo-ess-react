@@ -3,11 +3,9 @@ import Clock from "./components/Clock";
 import Week from "./components/Week";
 import PayrollsTable from "./components/PayrollsTable";
 import { MdAccessTime, MdToday } from "react-icons/md";
-import { columnsDataLeaves } from "./variables/columnsData";
-import tableDataComplex from "./variables/tableDataComplex.json";
-import LeavesTable from "views/ess/tables/components/LeavesTable";
 import React, { useState, useEffect } from "react";
 import client from "api/axios"
+import LeavesTable from "./components/LeavesTable";
 
 const Home = () => {
   const [data, setData] = useState([])
@@ -57,11 +55,7 @@ const Home = () => {
         <PayrollsTable />
       </div>
       <div className="mt-5 grid grid-cols-1">
-        <LeavesTable
-          columnsData={columnsDataLeaves}
-          tableData={tableDataComplex}
-          title={true}
-        />
+        <LeavesTable />
       </div>
     </div>
   );

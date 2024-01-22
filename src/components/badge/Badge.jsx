@@ -2,7 +2,7 @@ const Badge = (props) => {
   const { state, label } = props;
   return (
     <div
-      className={`w-24 text-center rounded-2xl px-3 py-2 text-xs font-bold uppercase text-white transition duration-200 ${
+      className={`w-24 text-center rounded-sm py-[5px] text-xs font-bold uppercase text-white transition duration-200 ${
         (state === "error" || state === "failed")
           ? "bg-red-500 dark:bg-red-400"
           : (state === "success" || state === "completed" || state === "approved")

@@ -73,7 +73,6 @@ export const columnsDataLeaves = [
     accessor: "status",
   },
   {
-    Header: "Link",
-    accessor: "link"
+    Header: "Action",
   }
 ];

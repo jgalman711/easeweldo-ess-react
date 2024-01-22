@@ -3,7 +3,7 @@ import { columnsDataLeaves } from "../variables/columnsData";
 import React, { useState, useEffect } from "react";
 import client from "api/axios"
 
-const PayrollsTable = () => {
+const LeavesTable = () => {
   const [payrollsData, setPayrollsData] = useState([]);
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
@@ -11,10 +11,10 @@ const PayrollsTable = () => {
   useEffect(() => {
     const fetchPayrolls = async () => {
       try {
-        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls`);
+        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/leaves`);
         setPayrollsData(response.data?.data);
       } catch (error) {
-        console.error('Error fetching payrolls:', error);
+        console.error('Error fetching leaves:', error);
       }
     };
 
@@ -29,9 +29,9 @@ const PayrollsTable = () => {
     <SimpleTable
       columnsData={columnsDataLeaves}
       tableData={payrollsData}
-      title="Payrolls"
+      title="Leaves"
     />
   );
 };
 
-export default PayrollsTable;
+export default LeavesTable;
