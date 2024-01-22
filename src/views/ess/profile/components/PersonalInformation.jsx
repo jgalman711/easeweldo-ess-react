@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from "components/card";
 import InputField from "components/fields/InputField";
 import Button from "components/button/Button";
@@ -10,24 +10,33 @@ const PersonalInformation = ({ data }) => {
   const employeeId = localStorage.getItem('id');
 
   const [formData, setFormData] = useState({
-    email_address: (data?.data?.email_address || '').toString(),
-    mobile_number: (data?.data?.mobile_number || '').toString(),
-    date_of_birth: (data?.data?.date_of_birth || '').toString(),
-    address_line: (data?.data?.address_line || '').toString(),
-    barangay_town_city_province: (data?.data?.barangay_town_city_province || '').toString(),
+    mobile_number: '',
+    date_of_birth: '',
+    address_line: '',
+    barangay_town_city_province: ''
   });
+
+  useEffect(() => {
+    setFormData({
+      mobile_number: data?.data?.mobile_number || '',
+      date_of_birth: data?.data?.date_of_birth || '',
+      address_line: data?.data?.address_line || '',
+      barangay_town_city_province: data?.data?.barangay_town_city_province || '',
+    });
+  }, [data]);
 
   const handleInputChange = (e) => {
     setFormData((prevData) => ({
-        ...prevData,
-        [e.target.id]: e.target.value,
-      }));
+      ...prevData,
+      [e.target.id]: e.target.value,
+    }));
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await client.put(`/companies/${companySlug}/employees/${employeeId}`, formData);
+      await client.post(`/companies/${companySlug}/employees/${employeeId}?_method=PUT`, formData);
+      //create a modal saying update successfully
     } catch (error) {
     }
   };
@@ -42,22 +51,20 @@ const PersonalInformation = ({ data }) => {
         Here you can change your personal information
       </p>
     </div>
-    {/* Project 1 */}
     <div className="grid grid-cols-4 gap-4 rounded-2xl bg-white py-3 dark:!bg-navy-700">
       <InputField
         label="Email"
-        id="email_address"
         type="text"
         extra="col-span-4"
-        value={formData.email_address !== '' ? formData.email_address : data?.data?.email_address || ''}
-        onChange={handleInputChange}
+        value={data?.data?.email_address ?? ''}
+        disabled={true}
       />
       <InputField
         label="Mobile Number"
         id="mobile_number"
         type="text"
         extra="col-span-2"
-        value={formData.mobile_number !== '' ? formData.mobile_number : data?.data?.mobile_number || ''}
+        value={formData.mobile_number}
         onChange={handleInputChange}
       />
       <InputField
@@ -65,7 +72,7 @@ const PersonalInformation = ({ data }) => {
         id="date_of_birth"
         type="text"
         extra="col-span-2"
-        value={formData.date_of_birth !== '' ? formData.date_of_birth : data?.data?.date_of_birth || ''}
+        value={formData.date_of_birth}
         onChange={handleInputChange}
       />
       <InputField
@@ -73,7 +80,7 @@ const PersonalInformation = ({ data }) => {
         id="address_line"
         type="text"
         extra="col-span-4"
-        value={formData.address_line !== '' ? formData.address_line : data?.data?.address_line || ''}
+        value={formData.address_line}
         onChange={handleInputChange}
       />
       <InputField
@@ -81,7 +88,7 @@ const PersonalInformation = ({ data }) => {
         id="barangay_town_city_province"
         type="text"
         extra="col-span-4"
-        value={formData.barangay_town_city_province !== '' ? formData.barangay_town_city_province : data?.data?.barangay_town_city_province || ''}
+        value={formData.barangay_town_city_province}
         onChange={handleInputChange}
       />
     </div>

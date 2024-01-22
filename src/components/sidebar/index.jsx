@@ -4,7 +4,7 @@ import { HiX } from "react-icons/hi";
 import Links from "./components/Links";
 
 import routes from "routes.js";
-import eslogo from "assets/img/layout/easeweldo-logo.png";
+import eslogo from "assets/img/layout/easeweldo-workhub.png";
 
 const Sidebar = ({ open, onClose }) => {
   return (
@@ -23,7 +23,7 @@ const Sidebar = ({ open, onClose }) => {
       <div className={`ml-[30px] mr-[50px] mt-[50px] flex items-center`}>
         <div className="mt-1 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
           <img
-              className="h-12"
+              className="h-11"
               src={eslogo}
               alt="Easeweldo Logo"
             />
