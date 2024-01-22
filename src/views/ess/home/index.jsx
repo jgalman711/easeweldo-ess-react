@@ -6,8 +6,23 @@ import { columnsDataLeaves } from "./variables/columnsData";
 import tableDataComplex from "./variables/tableDataComplex.json";
 import LeavesTable from "views/ess/tables/components/LeavesTable";
 import PayrollsTable from "../tables/components/PayrollsTable";
+import React, { useState, useEffect } from "react";
+import client from "api/axios"
 
 const Home = () => {
+  const [data, setData] = useState([])
+  const companySlug = localStorage.getItem('companySlug');
+  const employeeId = localStorage.getItem('id');
+
+  useEffect(() => {
+    const fetchInfo = () => {
+      return client
+        .get(`/companies/${companySlug}/employees/${employeeId}/work-schedules`)
+        .then((response) => setData(response.data));
+    }
+    fetchInfo();
+  }, [companySlug, employeeId])
+
   return (
     <div className="flex w-full flex-col gap-4">
       <div className="w-ful mt-3 flex h-fit flex-col gap-4 lg:grid lg:grid-cols-12">
@@ -34,7 +49,7 @@ const Home = () => {
             />
           </div>
           <div className="grid mt-4">
-            <Week />
+            <Week data={data} />
           </div>
         </div>
       </div>

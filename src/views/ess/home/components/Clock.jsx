@@ -12,7 +12,6 @@ const Clock = () => {
   
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
-      {/* Background and profile */}
       <div
         className="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover"
         style={{ backgroundImage: `url(${banner})` }}
@@ -22,7 +21,6 @@ const Clock = () => {
         </div>
       </div>
 
-      {/* Name and position */}
       <div className="mt-16 flex flex-col items-center mb-auto">
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {firstName} {lastName}
@@ -30,7 +28,6 @@ const Clock = () => {
         <p className="text-base font-normal text-gray-600">{jobTitle}</p>
       </div>
 
-      {/* Post followers */}
       <div className="mt-6 mb-3 flex flex-col w-full items-center">
         {/* <h5 className="text-left text-xl font-bold leading-9 text-navy-700 dark:text-white">
           Complete Your Profile

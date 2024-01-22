@@ -2,7 +2,8 @@ import Card from "components/card";
 import React from "react";
 import Day from "./Day";
 
-const Week = () => {
+const Week = ({ data }) => {
+  console.log(data);
   return (
     <Card extra={"w-full p-4 md:p-5"}>
       <div className="mb-2 3xl:mb-10 w-full">
@@ -15,7 +16,9 @@ const Week = () => {
       </div>
       <div className="grid grid-cols-7 gap-2 sm:gap-4 px-0">
         <Day
-          day="SUN"
+          day={data?.data?.day ?? "SUN"}
+          timein={data?.data?.expected_clock_in ?? "REST"}
+          timeout={data?.data?.expected_clock_out ?? "DAY"}
         />
         <Day
           day="MON"
