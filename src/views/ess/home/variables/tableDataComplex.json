@@ -1,22 +1,22 @@
 [
   {
     "title": "Marketplace",
-    "status": "Approved",
+    "status": "approved",
     "date": "24.Jan.2021"
   },
   {
     "title": "Marketplace",
-    "status": "Disable",
+    "status": "disable",
     "date": "30.Dec.2021"
   },
   {
     "title": "Marketplace",
-    "status": "Error",
+    "status": "error",
     "date": "20.May.2021"
   },
   {
     "title": "Marketplace",
-    "status": "Approved",
+    "status": "approved",
     "date": "12.Jul.2021"
   }
 ]

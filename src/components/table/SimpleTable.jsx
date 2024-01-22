@@ -5,11 +5,12 @@ import {
   useSortBy,
   useTable,
 } from "react-table";
-import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
 import { useMemo } from "react";
 import Progress from "components/progress";
+import { Link } from "react-router-dom";
+import Badge from "components/badge/Badge";
 
-const PayrollsTable = (props) => {
+const SimpleTable = (props) => {
   const { columnsData, tableData, title } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -40,7 +41,7 @@ const PayrollsTable = (props) => {
       <div className="relative flex items-center justify-between">
         {title && (
           <div className="mb-6 text-xl font-bold text-navy-700 dark:text-white">
-            Payrolls
+            {title}
           </div>
         )}
       </div>
@@ -64,7 +65,8 @@ const PayrollsTable = (props) => {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row, index) => {
+            { data.length > 0 ? (
+              page.map((row, index) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()} key={index}>
@@ -78,20 +80,10 @@ const PayrollsTable = (props) => {
                       );
                     } else if (cell.column.Header === "Status") {
                       data = (
-                        <div className="flex items-center gap-2">
-                          <div className={`rounded-full text-xl`}>
-                            {cell.value === "Approved" ? (
-                              <MdCheckCircle className="text-green-500" />
-                            ) : cell.value === "Disable" ? (
-                              <MdCancel className="text-red-500" />
-                            ) : cell.value === "Error" ? (
-                              <MdOutlineError className="text-orange-500" />
-                            ) : null}
-                          </div>
-                          <p className="text-sm font-bold text-navy-700 dark:text-white">
-                            {cell.value}
-                          </p>
-                        </div>
+                        <Badge 
+                          state={cell.value}
+                          label={cell.value}
+                        />
                       );
                     } else if (cell.column.Header === "Date") {
                       data = (
@@ -101,6 +93,15 @@ const PayrollsTable = (props) => {
                       );
                     } else if (cell.column.Header === "Action") {
                       data = <Progress width="w-[68px]" value={cell.value} />;
+                    } else if (cell.column.Header === "Link") {
+                      data = (
+                        <Link
+                            to={cell.value}
+                            className="text-sm font-bold text-blue-500 hover:text-blue-600 dark:text-white"
+                            >
+                            View
+                        </Link>
+                      );
                     }
                     return (
                       <td
@@ -114,7 +115,17 @@ const PayrollsTable = (props) => {
                   })}
                 </tr>
               );
-            })}
+              }) 
+            ) : ( 
+              <tr>
+                <td
+                  colSpan={columns.length}
+                  className="pt-[24px] pb-[18px] text-md text-center text-gray-600"
+                >
+                  No Record Found
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -122,4 +133,4 @@ const PayrollsTable = (props) => {
   );
 };
 
-export default PayrollsTable;
+export default SimpleTable;

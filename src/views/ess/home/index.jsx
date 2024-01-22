@@ -1,11 +1,11 @@
 import Widget from "components/widget/Widget";
 import Clock from "./components/Clock";
 import Week from "./components/Week";
+import PayrollsTable from "./components/PayrollsTable";
 import { MdAccessTime, MdToday } from "react-icons/md";
 import { columnsDataLeaves } from "./variables/columnsData";
 import tableDataComplex from "./variables/tableDataComplex.json";
 import LeavesTable from "views/ess/tables/components/LeavesTable";
-import PayrollsTable from "../tables/components/PayrollsTable";
 import React, { useState, useEffect } from "react";
 import client from "api/axios"
 
@@ -54,11 +54,7 @@ const Home = () => {
         </div>
       </div>
       <div className="mt-5 grid grid-cols-1">
-        <PayrollsTable
-          columnsData={columnsDataLeaves}
-          tableData={tableDataComplex}
-          title={true}
-        />
+        <PayrollsTable />
       </div>
       <div className="mt-5 grid grid-cols-1">
         <LeavesTable
