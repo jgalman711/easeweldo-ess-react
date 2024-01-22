@@ -55,21 +55,24 @@ export const columnsDataColumns = [
   },
 ];
 
-export const columnsDataComplex = [
+export const columnsDataLeaves = [
   {
-    Header: "NAME",
-    accessor: "name",
+    Header: "Title",
+    accessor: "title",
   },
   {
-    Header: "STATUS",
-    accessor: "status",
-  },
-  {
-    Header: "DATE",
+    Header: "Date",
     accessor: "date",
   },
   {
-    Header: "PROGRESS",
-    accessor: "progress",
+    Header: "Type",
+    accessor: "type",
   },
+  {
+    Header: "Status",
+    accessor: "status",
+  },
+  {
+    Header: "Action",
+  }
 ];

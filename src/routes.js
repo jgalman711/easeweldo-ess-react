@@ -1,67 +1,75 @@
 import React from "react";
 
 // Admin Imports
-import MainDashboard from "views/admin/default";
-import NFTMarketplace from "views/admin/marketplace";
-import Profile from "views/admin/profile";
-import DataTables from "views/admin/tables";
-import RTLDefault from "views/rtl/default";
-
-// Auth Imports
+import Home from "views/ess/home"
+import Profile from "views/ess/profile";
+import Payrolls from "views/ess/payrolls";
+import Timesheet from "views/ess/timesheet";
 import SignIn from "views/auth/SignIn";
+import ForgotPassword from "views/auth/ForgotPassword";
 
 // Icon Imports
 import {
   MdHome,
-  MdOutlineShoppingCart,
-  MdBarChart,
   MdPerson,
   MdLock,
+  MdWork,
+  MdAccessTimeFilled,
+  MdDateRange,
 } from "react-icons/md";
+import Leaves from "views/ess/leaves";
 
 const routes = [
   {
-    name: "Main Dashboard",
-    layout: "/admin",
-    path: "default",
+    name: "Home",
+    layout: "/ess",
+    path: "home",
     icon: <MdHome className="h-6 w-6" />,
-    component: <MainDashboard />,
-  },
-  {
-    name: "NFT Marketplace",
-    layout: "/admin",
-    path: "nft-marketplace",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-    component: <NFTMarketplace />,
-    secondary: true,
-  },
-  {
-    name: "Data Tables",
-    layout: "/admin",
-    icon: <MdBarChart className="h-6 w-6" />,
-    path: "data-tables",
-    component: <DataTables />,
+    component: <Home />,
   },
   {
     name: "Profile",
-    layout: "/admin",
+    layout: "/ess",
     path: "profile",
     icon: <MdPerson className="h-6 w-6" />,
     component: <Profile />,
   },
   {
-    name: "Sign In",
-    layout: "/auth",
-    path: "sign-in",
-    icon: <MdLock className="h-6 w-6" />,
-    component: <SignIn />,
+    name: "Timesheet",
+    layout: "/ess",
+    path: "timesheet",
+    icon: <MdAccessTimeFilled className="h-6 w-6" />,
+    component: <Timesheet />,
   },
   {
-    name: "RTL Admin",
-    layout: "/rtl",
-    path: "rtl",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
+    name: "Leaves",
+    layout: "/ess",
+    path: "leaves",
+    icon: <MdDateRange className="h-6 w-6" />,
+    component: <Leaves />,
   },
+  {
+    name: "Payrolls",
+    layout: "/ess",
+    path: "payrolls",
+    icon: <MdWork className="h-6 w-6" />,
+    component: <Payrolls />,
+  },
+  {
+    name: "Sign In",
+    layout: "/auth",
+    path: "login",
+    icon: <MdLock className="h-6 w-6" />,
+    component: <SignIn />,
+    sidebar: false
+  },
+  {
+    name: "Forgot Password",
+    layout: "/auth",
+    path: "forgot-password",
+    icon: <MdLock className="h-6 w-6" />,
+    component: <ForgotPassword />,
+    sidebar: false
+  }
 ];
 export default routes;
