@@ -4,22 +4,22 @@ import React, { useState, useEffect } from "react";
 import client from "api/axios"
 
 const LeavesTable = () => {
-  const [payrollsData, setPayrollsData] = useState([]);
+  const [leavesData, setLeavesData] = useState([]);
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
 
   useEffect(() => {
-    const fetchPayrolls = async () => {
+    const fetchLeaves = async () => {
       try {
         const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/leaves`);
-        setPayrollsData(response.data?.data);
+        setLeavesData(response.data?.data);
       } catch (error) {
         console.error('Error fetching leaves:', error);
       }
     };
 
     if (companySlug && employeeId) {
-      fetchPayrolls();
+      fetchLeaves();
     } else {
       console.error('Company slug or employee ID not available');
     }
@@ -28,7 +28,7 @@ const LeavesTable = () => {
   return (
     <SimpleTable
       columnsData={columnsDataLeaves}
-      tableData={payrollsData}
+      tableData={leavesData}
       title="Leaves"
     />
   );
