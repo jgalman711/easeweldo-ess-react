@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Alert = ({ type, title, description, extraClass }) => {
-  // Define classes based on the alert type
   const alertClasses = `p-3 rounded-md ${extraClass || ''} ${
     type === 'success' ? 'bg-green-500 text-white' :
     type === 'error' ? 'bg-red-500 text-white' :

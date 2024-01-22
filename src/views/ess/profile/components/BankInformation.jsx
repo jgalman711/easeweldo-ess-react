@@ -23,6 +23,9 @@ const BankInformation = ({ data }) => {
     });
   }, [data]);
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const handleInputChange = (e) => {
     setFormData((prevData) => ({
         ...prevData,
@@ -32,9 +35,19 @@ const BankInformation = ({ data }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
+      await new Promise(resolve => setTimeout(resolve, 800));
       await client.put(`/companies/${companySlug}/employees/${employeeId}`, formData);
+
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        setIsSuccess(false);
+      }, 1000);
     } catch (error) {
+      setIsLoading(false);
+      setIsSuccess(false);
     }
   };
 
@@ -78,9 +91,11 @@ const BankInformation = ({ data }) => {
       <div className="col-span-4 flex justify-end my-3">
         <Button
           id="saveBankInformation"
-          label="Save Changes"
+          label={isLoading ? (isSuccess ? "✔ Saved" : "Saving...") : "Save Changes"}
           status="positive"
           onClick={handleFormSubmit}
+          disabled={isLoading}
+          extra="w-36"
         />
       </div>
     </Card>
