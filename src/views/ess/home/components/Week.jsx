@@ -3,7 +3,6 @@ import React from "react";
 import Day from "./Day";
 
 const Week = ({ data }) => {
-  console.log(data);
   return (
     <Card extra={"w-full p-4 md:p-5"}>
       <div className="mb-2 3xl:mb-10 w-full">
