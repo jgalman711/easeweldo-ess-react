@@ -4,7 +4,7 @@ import Day from "./Day";
 
 const Week = ({ data }) => {
   return (
-    <Card extra={"w-full p-4 md:p-5"}>
+    <Card extra={"w-full p-4"}>
       <div className="mb-2 3xl:mb-10 w-full">
         <h4 className="mb-2 text-xl font-bold text-navy-700 dark:text-white">
           This Week
@@ -13,39 +13,41 @@ const Week = ({ data }) => {
           Your work schedule for this week
         </p>
       </div>
-      <div className="grid grid-cols-7 gap-2 sm:gap-4 px-0">
+      <div className="grid grid-cols-7 gap-1 sm:gap-2 3xl:gap-4 px-0">
         <Day
           day={data?.data?.day ?? "SUN"}
-          timein={data?.data?.expected_clock_in ?? "REST"}
-          timeout={data?.data?.expected_clock_out ?? "DAY"}
+          timein={data?.data?.sunday_clock_in_time ?? "REST"}
+          timeout={data?.data?.sunday_clock_out_time ?? "DAY"}
         />
         <Day
           day="MON"
-          timein="08:00"
-          timeout="17:00"
+          timein={data?.data?.monday_clock_in_time ?? "REST"}
+          timeout={data?.data?.monday_clock_out_time ?? "DAY"}
         />
         <Day
           day="TUE"
-          timein="08:00"
-          timeout="17:00"
+          timein={data?.data?.tueday_clock_in_time ?? "REST"}
+          timeout={data?.data?.tueday_clock_out_time ?? "DAY"}
         />
         <Day
           day="WED"
-          timein="08:00"
-          timeout="17:00"
+          timein={data?.data?.wednesday_clock_in_time ?? "REST"}
+          timeout={data?.data?.wednesday_clock_out_time ?? "DAY"}
         />
         <Day
           day="THU"
-          timein="08:00"
-          timeout="17:00"
+          timein={data?.data?.thursday_clock_in_time ?? "REST"}
+          timeout={data?.data?.thursday_clock_out_time ?? "DAY"}
         />
         <Day
           day="FRI"
-          timein="08:00"
-          timeout="17:00"
+          timein={data?.data?.friday_clock_in_time ?? "REST"}
+          timeout={data?.data?.friday_clock_out_time ?? "DAY"}
         />
         <Day
           day="SAT"
+          timein={data?.data?.saturday_clock_in_time ?? "REST"}
+          timeout={data?.data?.saturday_clock_out_time ?? "DAY"}
         />
       </div>
     </Card>

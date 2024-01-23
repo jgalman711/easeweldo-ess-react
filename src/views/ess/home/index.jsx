@@ -9,17 +9,46 @@ import LeavesTable from "./components/LeavesTable";
 
 const Home = () => {
   const [data, setData] = useState([])
+  const [currentDaySchedule, setCurrentDaySchedule] = useState({});
+
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
 
   useEffect(() => {
     const fetchInfo = () => {
       return client
-        .get(`/companies/${companySlug}/employees/${employeeId}/work-schedules`)
+        .get(`/companies/${companySlug}/employees/${employeeId}/work-schedules/latest`)
         .then((response) => setData(response.data));
     }
     fetchInfo();
   }, [companySlug, employeeId])
+
+  useEffect(() => {
+    if (data && Object.keys(data).length > 0) {
+      const getCurrentDaySchedule = () => {
+        const currentDate = new Date();
+        const currentDay = currentDate.getDay();
+
+        const dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+        const currentDayName = dayNames[currentDay];
+
+        const clockInTime = data?.data?.[`${currentDayName}_clock_in_time`];
+        const clockOutTime = data?.data?.[`${currentDayName}_clock_out_time`];
+
+        setCurrentDaySchedule({ clockInTime, clockOutTime });
+      };
+
+      getCurrentDaySchedule();
+    }
+  }, [data]);
+
+  const renderSubtitle = () => {
+    if (currentDaySchedule.clockInTime && currentDaySchedule.clockOutTime) {
+      return `${currentDaySchedule.clockInTime} - ${currentDaySchedule.clockOutTime}`;
+    } else {
+      return "Rest Day";
+    }
+  };
 
   return (
     <div className="flex w-full flex-col gap-4">
@@ -32,7 +61,7 @@ const Home = () => {
             <Widget
               icon={<MdToday className="h-7 w-7" />}
               title={"Work Today"}
-              subtitle={"08:00 - 17:00"}
+              subtitle={renderSubtitle()}
               extraClass="col-span-1 lg:col-span-2 3xl:col-span-1"
             />
             <Widget

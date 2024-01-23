@@ -40,11 +40,9 @@ const PersonalInformation = ({ data }) => {
     setIsLoading(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 800));
-
       await client.post(`/companies/${companySlug}/employees/${employeeId}?_method=PUT`, formData);
-      setIsSuccess(true);
 
-      // Reset loading and success states after a brief delay
+      setIsSuccess(true);
       setTimeout(() => {
         setIsLoading(false);
         setIsSuccess(false);
