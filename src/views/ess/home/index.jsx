@@ -10,7 +10,9 @@ import LeavesTable from "./components/LeavesTable";
 const Home = () => {
   const [data, setData] = useState([])
   const [currentDaySchedule, setCurrentDaySchedule] = useState({});
-
+  const [clockInTime, setClockInTime] = useState("--:--:--");
+  const [clockOutTime, setClockOutTime] = useState("--:--:--");
+  const [formattedToday, setFormattedToday] = useState("");
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
 
@@ -20,8 +22,31 @@ const Home = () => {
         .get(`/companies/${companySlug}/employees/${employeeId}/work-schedules/latest`)
         .then((response) => setData(response.data));
     }
+
+    const fetchTimeRecords = () => {
+      return client
+        .get(`/companies/${companySlug}/employees/${employeeId}/time-records?date_from=${formattedToday}&date_to=${formattedToday}`)
+        .then((response) => {
+          const records = (response.data?.data || [])[0] || {};
+          setClockInTime(records?.clock_in?.substring(11, 19) || "--:--:--");
+          setClockOutTime(records?.clock_out?.substring(11, 19) || "--:--:--");
+        });
+    };
+
+    const getFormattedToday = () => {
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const formattedDate = `${year}-${month}-${day}`;
+      setFormattedToday(formattedDate);
+    };
+
     fetchInfo();
-  }, [companySlug, employeeId])
+    fetchTimeRecords();
+    getFormattedToday();
+
+  }, [companySlug, employeeId, formattedToday])
 
   useEffect(() => {
     if (data && Object.keys(data).length > 0) {
@@ -67,13 +92,13 @@ const Home = () => {
             <Widget
               icon={<MdAccessTime className="h-7 w-7" />}
               title={"Clock In"}
-              subtitle={"07:49:40"}
-            />
+              subtitle={clockInTime}
+              />
             <Widget
               icon={<MdAccessTime className="h-7 w-7" />}
               title={"Clock Out"}
-              subtitle={"--:--:--"}
-            />
+              subtitle={clockOutTime}
+              />
           </div>
           <div className="grid mt-4">
             <Week data={data} />
