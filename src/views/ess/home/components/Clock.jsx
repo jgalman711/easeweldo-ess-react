@@ -2,8 +2,8 @@ import React from "react";
 import banner from "assets/img/profile/banner.png";
 import Card from "components/card";
 
-const Clock = () => {
-
+const Clock = (props) => {
+  const { nextAction } = props;
   const firstName = localStorage.getItem('firstName');
   const lastName = localStorage.getItem('lastName');
   const jobTitle = localStorage.getItem('jobTitle');
@@ -29,18 +29,11 @@ const Clock = () => {
       </div>
 
       <div className="mt-6 mb-3 flex flex-col w-full items-center">
-        {/* <h5 className="text-left text-xl font-bold leading-9 text-navy-700 dark:text-white">
-          Complete Your Profile
-        </h5>
-        <p className="leading-1 mt-2 text-base font-normal text-gray-600">
-          Stay on the pulse of distributed projects with an anline whiteboard to
-          plan, coordinate and discuss
-        </p> */}
         <button
           href=" "
           className="linear flex items-center justify-center rounded-lg bg-brand-500 w-full px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200"
         >
-          Clock In
+          { nextAction }
         </button>
       </div>
     </Card>
