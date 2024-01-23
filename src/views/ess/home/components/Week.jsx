@@ -26,8 +26,8 @@ const Week = ({ data }) => {
         />
         <Day
           day="TUE"
-          timein={data?.data?.tueday_clock_in_time ?? "REST"}
-          timeout={data?.data?.tueday_clock_out_time ?? "DAY"}
+          timein={data?.data?.tuesday_clock_in_time ?? "REST"}
+          timeout={data?.data?.tuesday_clock_out_time ?? "DAY"}
         />
         <Day
           day="WED"
