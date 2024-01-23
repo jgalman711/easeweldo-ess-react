@@ -81,7 +81,7 @@ const Home = () => {
     <div className="flex w-full flex-col gap-4">
       <div className="w-ful mt-3 flex h-fit flex-col gap-4 lg:grid lg:grid-cols-12">
         <div className="col-span-12 sm:col-span-5 3xl:col-span-4 lg:!mb-0">
-          <Clock nextAction={nextAction}/>
+          <Clock initialNextAction={nextAction}/>
         </div>
         <div className="col-span-12 sm:col-span-7 3xl:col-span-8">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-2 3xl:grid-cols-3">

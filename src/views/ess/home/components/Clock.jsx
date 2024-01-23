@@ -1,15 +1,29 @@
-import React from "react";
-import banner from "assets/img/profile/banner.png";
+import React, { useState } from "react";
 import Card from "components/card";
+import banner from "assets/img/profile/banner.png";
+import client from "api/axios";
+
 
 const Clock = (props) => {
-  const { nextAction } = props;
+  const { initialNextAction } = props;
+  const [nextAction, setNextAction] = useState("");
+
   const firstName = localStorage.getItem('firstName');
   const lastName = localStorage.getItem('lastName');
   const jobTitle = localStorage.getItem('jobTitle');
   const profilePicture = localStorage.getItem('profilePicture');
   const storageUrl = process.env.REACT_APP_ES_STORAGE_URL
-  
+  const companySlug = localStorage.getItem('companySlug');
+  const employeeId = localStorage.getItem('id');
+
+  const handleClockButtonClick = async () => {
+    try {
+      const response = await client.post(`/companies/${companySlug}/employees/${employeeId}/clock`);
+      const { data } = response.data;
+      setNextAction(data.next_action);
+    } catch (error) {}
+  };
+
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
       <div
@@ -32,8 +46,9 @@ const Clock = (props) => {
         <button
           href=" "
           className="linear flex items-center justify-center rounded-lg bg-brand-500 w-full px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200"
+          onClick={handleClockButtonClick}
         >
-          { nextAction }
+          { nextAction || initialNextAction || "Clock In" }
         </button>
       </div>
     </Card>
