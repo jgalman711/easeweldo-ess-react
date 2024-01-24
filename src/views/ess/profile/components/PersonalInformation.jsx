@@ -46,7 +46,7 @@ const PersonalInformation = ({ data }) => {
       setTimeout(() => {
         setIsLoading(false);
         setIsSuccess(false);
-      }, 1000);
+      }, 1200);
     } catch (error) {
       setIsLoading(false);
       setIsSuccess(false);
@@ -104,14 +104,15 @@ const PersonalInformation = ({ data }) => {
           onChange={handleInputChange}
         />
       </div>
-      <div className="col-span-4 flex justify-end my-3">
+      <div className="col-span-4 flex justify-end my-2.5">
         <Button
           id="savePersonalInformation"
-          label={isLoading ? (isSuccess ? "✔ Saved" : "Saving...") : "Save Changes"}
+          label={isLoading ? (isSuccess ? "Changes Saved" : "Saving...") : "Save Changes"}
           status="positive"
           onClick={handleFormSubmit}
           disabled={isLoading}
-          extra="w-36"
+          isLoading={isLoading && !isSuccess}
+          extra="w-40"
         />
       </div>
     </Card>
