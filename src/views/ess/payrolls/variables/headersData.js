@@ -1,15 +1,27 @@
 export const headersData = [
   {
-    Header: "Title",
-    accessor: "title",
+    Header: "Pay Date",
+    accessor: "pay_date",
   },
   {
-    Header: "Date",
-    accessor: "date",
+    Header: "Basic Salary",
+    accessor: "basic_salary",
   },
   {
-    Header: "Type",
-    accessor: "type",
+    Header: "Deductions",
+    accessor: "total_deductions",
+  },
+  {
+    Header: "Contributions",
+    accessor: "total_contributions",
+  },
+  {
+    Header: "Non-taxables",
+    accessor: "total_non_taxable_earnings"
+  },
+  {
+    Header: "Net Income",
+    accessor: "net_income",
   },
   {
     Header: "Status",
@@ -17,5 +29,6 @@ export const headersData = [
   },
   {
     Header: "Action",
+    accessor: "id",
   }
 ];
