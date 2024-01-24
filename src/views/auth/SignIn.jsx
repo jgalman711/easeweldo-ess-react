@@ -5,6 +5,7 @@ import client from "api/axios"
 import Alert from "components/alert/Alert";
 import { Link } from "react-router-dom";
 import eslogo from "assets/img/auth/logo.png";
+import Button from "components/button/Button";
 
 export default function SignIn() {
   const [error, setError] = useState(null);
@@ -21,14 +22,27 @@ export default function SignIn() {
   const handleRemember = (event) => {
     setRememberMe(event.target.checked);
   };
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
+      await new Promise(resolve => setTimeout(resolve, 800));
       const response = await client.post('/login', {
         email_address: email,
         password: password,
         remember: rememberMe
       });
+
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        setIsSuccess(false);
+      }, 1000);
+
       const authToken = response.data?.data?.token;
       const employee = response.data?.data?.employee;
       const company = response.data?.data?.companies[0];
@@ -50,6 +64,8 @@ export default function SignIn() {
       } else {
         setError('Error setting up the request:', error.message);
       }
+      setIsLoading(false);
+      setIsSuccess(false);
     }
   };
 
@@ -107,9 +123,18 @@ export default function SignIn() {
               Forgot Password?
             </Link>
           </div>
-          <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200" type="submit">
+          {/* <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200" type="submit">
             Sign In
-          </button>
+          </button> */}
+          <Button
+            type="submit"
+            label={isLoading ? "Signing In" : "Sign In"}
+            status="positive"
+            onClick={handleFormSubmit}
+            disabled={isLoading}
+            isLoading={isLoading && !isSuccess}
+            extra="w-full"
+          />
         </form>
       </div>
     </div>

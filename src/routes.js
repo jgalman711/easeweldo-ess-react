@@ -7,6 +7,7 @@ import Payrolls from "views/ess/payrolls";
 import Timesheet from "views/ess/timesheet";
 import SignIn from "views/auth/SignIn";
 import ForgotPassword from "views/auth/ForgotPassword";
+// import Leaves from "views/ess/leaves";
 
 // Icon Imports
 import {
@@ -15,9 +16,8 @@ import {
   MdLock,
   MdWork,
   MdAccessTimeFilled,
-  MdDateRange,
+  // MdDateRange,
 } from "react-icons/md";
-import Leaves from "views/ess/leaves";
 
 const routes = [
   {
@@ -41,13 +41,13 @@ const routes = [
     icon: <MdAccessTimeFilled className="h-6 w-6" />,
     component: <Timesheet />,
   },
-  {
-    name: "Leaves",
-    layout: "/ess",
-    path: "leaves",
-    icon: <MdDateRange className="h-6 w-6" />,
-    component: <Leaves />,
-  },
+  // {
+  //   name: "Leaves",
+  //   layout: "/ess",
+  //   path: "leaves",
+  //   icon: <MdDateRange className="h-6 w-6" />,
+  //   component: <Leaves />,
+  // },
   {
     name: "Payrolls",
     layout: "/ess",

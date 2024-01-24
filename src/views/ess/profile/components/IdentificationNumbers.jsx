@@ -99,14 +99,15 @@ const IdentificationNumbers = ({ data }) => {
           onChange={handleInputChange}
         />
       </div>
-      <div className="col-span-4 flex justify-end my-3">
-        <Button
+      <div className="col-span-4 flex justify-end my-2.5">
+         <Button
           id="saveIdentificationNumber"
-          label={isLoading ? (isSuccess ? "✔ Saved" : "Saving...") : "Save Changes"}
+          label={isLoading ? (isSuccess ? "Changes Saved" : "Saving...") : "Save Changes"}
           status="positive"
           onClick={handleFormSubmit}
           disabled={isLoading}
-          extra="w-36"
+          isLoading={isLoading && !isSuccess}
+          extra="w-40"
         />
       </div>
     </Card>
