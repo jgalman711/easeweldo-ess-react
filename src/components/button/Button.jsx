@@ -1,7 +1,7 @@
 import React from "react";
 
 const Button = ({ label, status, id, onClick, disabled, extra, isLoading, type }) => {
-  let buttonClass = `text-white px-4 py-3 linear flex cursor-pointer items-center justify-center disabled rounded-xl font-bold transition duration-200 ${extra || ''}`;
+  let buttonClass = `text-white px-4 py-3 linear flex cursor-pointer items-center justify-center rounded-xl font-bold transition duration-200 ${extra || ''}`;
 
   if (disabled) {
     buttonClass += " bg-green-400 disabled cursor-default";
