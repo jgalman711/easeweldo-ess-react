@@ -10,7 +10,7 @@ const WorkInformation = ({ data }) => {
           Employment Details
         </h4>
         <p className="mt-2 text-base text-gray-600">
-          Here you can change your contact information
+          Browse and review your work information
         </p>
       </div>
       {/* Project 1 */}

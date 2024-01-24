@@ -60,7 +60,7 @@ const PersonalInformation = ({ data }) => {
           Personal Information
         </h4>
         <p className="mt-2 text-base text-gray-600">
-          Here you can change your personal information
+          Manage and update your personal details
         </p>
       </div>
       <div className="grid grid-cols-4 gap-4 rounded-2xl bg-white py-3 dark:!bg-navy-700">
