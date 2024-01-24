@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ label, status, id, onClick, disabled, extra, isLoading }) => {
+const Button = ({ label, status, id, onClick, disabled, extra, isLoading, type }) => {
   let buttonClass = `text-white px-4 py-3 linear flex cursor-pointer items-center justify-center disabled rounded-xl font-bold transition duration-200 ${extra || ''}`;
 
   if (disabled) {
@@ -15,6 +15,7 @@ const Button = ({ label, status, id, onClick, disabled, extra, isLoading }) => {
 
   return (
     <button
+      type={type}
       className={buttonClass}
       id={id}
       onClick={onClick}

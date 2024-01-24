@@ -99,7 +99,7 @@ const IdentificationNumbers = ({ data }) => {
           onChange={handleInputChange}
         />
       </div>
-      <div className="col-span-4 flex justify-end my-3">
+      <div className="col-span-4 flex justify-end my-2.5">
          <Button
           id="saveIdentificationNumber"
           label={isLoading ? (isSuccess ? "Changes Saved" : "Saving...") : "Save Changes"}

@@ -5,7 +5,7 @@ import PayrollsTable from "./components/PayrollsTable";
 import { MdAccessTime, MdToday } from "react-icons/md";
 import React, { useState, useEffect } from "react";
 import client from "api/axios"
-import LeavesTable from "./components/LeavesTable";
+// import LeavesTable from "./components/LeavesTable";
 
 const Home = () => {
   const [data, setData] = useState([])
@@ -110,9 +110,9 @@ const Home = () => {
       <div className="mt-5 grid grid-cols-1">
         <PayrollsTable />
       </div>
-      <div className="mt-5 grid grid-cols-1">
+      {/* <div className="mt-5 grid grid-cols-1">
         <LeavesTable />
-      </div>
+      </div> */}
     </div>
   );
 };
