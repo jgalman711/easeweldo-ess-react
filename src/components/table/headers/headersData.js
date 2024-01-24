@@ -1,4 +1,4 @@
-export const headersData = [
+export const payrollsHeadersData = [
   {
     Header: "Pay Date",
     accessor: "pay_date",

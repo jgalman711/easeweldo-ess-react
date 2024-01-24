@@ -1,5 +1,5 @@
-import SimpleTable from "components/table/SimpleTable";
-import { columnsDataLeaves } from "../variables/columnsData";
+import PayrollTable from "components/table/PayrollsTable";
+import { payrollsHeadersData } from "components/table/headers/headersData";
 import React, { useState, useEffect } from "react";
 import client from "api/axios"
 
@@ -26,8 +26,8 @@ const PayrollsTable = () => {
   }, [companySlug, employeeId]);
 
   return (
-    <SimpleTable
-      columnsData={columnsDataLeaves}
+    <PayrollTable
+      columnsData={payrollsHeadersData}
       tableData={payrollsData}
       title="Payrolls"
     />
