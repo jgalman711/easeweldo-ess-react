@@ -61,7 +61,7 @@ const IdentificationNumbers = ({ data }) => {
           Identification Numbers
         </h4>
         <p className="mt-2 text-base text-gray-600">
-          Here you can change your identification numbers
+          Manage and update your identification numbers
         </p>
       </div>
       {/* Project 1 */}

@@ -58,7 +58,7 @@ const BankInformation = ({ data }) => {
           Bank Information
         </h4>
         <p className="mt-2 text-base text-gray-600">
-          Here you can change your bank information
+          Manage and update your bank account details
         </p>
       </div>
       {/* Project 1 */}

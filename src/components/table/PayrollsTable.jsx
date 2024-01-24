@@ -7,8 +7,9 @@ import {
 } from "react-table";
 import { useMemo } from "react";
 import SubtleBadge from "components/badge/SubtleBadge";
+import { Link } from "react-router-dom";
 
-const TimesheetTable = (props) => {
+const PayrollsTable = (props) => {
   const { columnsData, tableData, title } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -52,7 +53,7 @@ const TimesheetTable = (props) => {
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     key={index}
-                    className="border-b border-gray-200 pr-28 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200 pr-8 pb-[10px] text-start dark:!border-navy-700"
                   >
                     <p className="text-md tracking-wide font-semibold text-gray-600">
                       {column.render("Header")}
@@ -70,6 +71,7 @@ const TimesheetTable = (props) => {
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
+                    let payrollLink = `${encodeURIComponent(cell.value)}`;
                     if (cell.column.Header === "Status") {
                       data = (
                         <SubtleBadge
@@ -83,17 +85,14 @@ const TimesheetTable = (props) => {
                           { cell?.value?.substring(0, 11) }
                         </p>
                       );
-                    } else if (cell.column.Header === "Clock In" || cell.column.Header === "Clock Out") {
+                    } else if (cell.column.Header === "Action") {
                       data = (
-                        <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          { cell?.value ? cell?.value?.substring(11, 19) : "--:--:--"}
-                        </p>
-                      );
-                    } else if (cell.column.Header === "Source") {
-                      data = (
-                        <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          { cell?.value || "Default"}
-                        </p>
+                        <Link
+                          to={payrollLink}
+                          className="text-sm font-bold underline text-blue-500 hover:text-blue-600 dark:text-white"
+                        >
+                          View
+                        </Link>
                       );
                     } else {
                       data = (
@@ -132,4 +131,4 @@ const TimesheetTable = (props) => {
   );
 };
 
-export default TimesheetTable;
+export default PayrollsTable;

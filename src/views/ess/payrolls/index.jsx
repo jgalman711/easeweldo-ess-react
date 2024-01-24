@@ -1,5 +1,5 @@
-import { headersData } from "./variables/headersData";
-import SimpleTable from "components/table/SimpleTable";
+import { payrollsHeadersData } from "components/table/headers/headersData"
+import PayrollsTable from "components/table/PayrollsTable";
 import React, { useState, useEffect } from "react";
 import client from "api/axios"
 
@@ -28,8 +28,8 @@ const Payrolls = () => {
   return (
     <div className="flex w-full flex-col gap-5">
       <div className="mt-5 grid grid-cols-1">
-        <SimpleTable
-          columnsData={headersData}
+        <PayrollsTable
+          columnsData={payrollsHeadersData}
           tableData={payrollsData}
         />
       </div>
