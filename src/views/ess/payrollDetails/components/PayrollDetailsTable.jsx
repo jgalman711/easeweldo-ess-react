@@ -9,7 +9,7 @@ import { useMemo } from "react";
 import SubtleBadge from "components/badge/SubtleBadge";
 import { Link } from "react-router-dom";
 
-const PayrollsTable = (props) => {
+const PayrollDetailsTable = (props) => {
   const { columnsData, tableData, title } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -53,7 +53,7 @@ const PayrollsTable = (props) => {
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     key={index}
-                    className="border-b border-gray-200 pr-8 pb-[10px] text-start dark:!border-navy-700 whitespace-nowrap"
+                    className="border-b border-gray-200 pr-8 pb-[10px] text-start dark:!border-navy-700"
                   >
                     <p className="text-md tracking-wide font-semibold text-gray-600">
                       {column.render("Header")}
@@ -103,7 +103,7 @@ const PayrollsTable = (props) => {
                     }
                     return (
                       <td
-                        className="pt-[14px] pb-[18px] pr-2 sm:text-[14px]"
+                        className="pt-[14px] pb-[18px] sm:text-[14px]"
                         {...cell.getCellProps()}
                         key={index}
                       >
@@ -131,4 +131,4 @@ const PayrollsTable = (props) => {
   );
 };
 
-export default PayrollsTable;
+export default PayrollDetailsTable;
