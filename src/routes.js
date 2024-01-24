@@ -4,6 +4,7 @@ import React from "react";
 import Home from "views/ess/home"
 import Profile from "views/ess/profile";
 import Payrolls from "views/ess/payrolls";
+import PayrollDetails from "views/ess/payrollDetails";
 import Timesheet from "views/ess/timesheet";
 import SignIn from "views/auth/SignIn";
 import ForgotPassword from "views/auth/ForgotPassword";
@@ -70,6 +71,14 @@ const routes = [
     icon: <MdLock className="h-6 w-6" />,
     component: <ForgotPassword />,
     sidebar: false
-  }
+  },
+  {
+    name: "Payroll Details",
+    layout: "/ess",
+    path: "payrolls/:payrollId", // Use a dynamic parameter to capture payroll ID
+    icon: <MdWork className="h-6 w-6" />,
+    component: <PayrollDetails />,
+    sidebar: false,
+  },
 ];
 export default routes;

@@ -20,7 +20,9 @@ const App = () => {
   return (
     <Routes>
       <Route path="auth/*" element={redirectToEssIfAuthenticated(<AuthLayout />)} />
-      <Route path="ess/*" element={requireAuth(<EssLayout />)} />
+      <Route path="ess/*" element={requireAuth(<EssLayout />)}>
+        <Route path="payrolls/:payrollId" element={requireAuth(<EssLayout />)} />
+      </Route>
       <Route path="/" element={<Navigate to="/ess" replace />} />
     </Routes>
   );

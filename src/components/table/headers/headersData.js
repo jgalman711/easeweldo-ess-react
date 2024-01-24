@@ -32,3 +32,22 @@ export const payrollsHeadersData = [
     accessor: "id",
   }
 ];
+
+export const payrollHeadersData = [
+  {
+    Header: "Earnings",
+    accessor: "title",
+  },
+  {
+    Header: "Rate",
+    accessor: "date",
+  },
+  {
+    Header: "Hours",
+    accessor: "type",
+  },
+  {
+    Header: "Amount",
+    accessor: "status",
+  }
+];
