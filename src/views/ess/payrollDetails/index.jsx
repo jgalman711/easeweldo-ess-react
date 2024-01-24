@@ -16,7 +16,7 @@ const PayrollDetails = () => {
   useEffect(() => {
     const fetchPayrollDetails = async () => {
       try {
-        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls`);
+        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls/${payrollId}`);
         PayrollDetails(response?.data?.data);
       } catch (error) {
         console.error('Error fetching payroll details:', error);
@@ -49,10 +49,10 @@ const PayrollDetails = () => {
           extraClass="col-span-2 md:col-span-1"
         />
       </div>
-      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
+      <div className="mt-5 grid grid-cols-1 gap-5">
         <PayrollDetailsTable
           columnsData={payrollHeadersData}
-          tableData={payrollDetails}
+          tableData={[]}
         />
       </div>
     </div>
