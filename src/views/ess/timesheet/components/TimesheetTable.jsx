@@ -6,7 +6,7 @@ import {
   useTable,
 } from "react-table";
 import { useMemo } from "react";
-import Badge from "components/badge/Badge";
+import SubtleBadge from "components/badge/SubtleBadge";
 
 const TimesheetTable = (props) => {
   const { columnsData, tableData, title } = props;
@@ -72,7 +72,7 @@ const TimesheetTable = (props) => {
                     let data = "";
                     if (cell.column.Header === "Status") {
                       data = (
-                        <Badge 
+                        <SubtleBadge
                           state={cell.value}
                           label={cell.value}
                         />
