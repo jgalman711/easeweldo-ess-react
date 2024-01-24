@@ -89,7 +89,7 @@ const PayrollsTable = (props) => {
                       data = (
                         <Link
                           to={payrollLink}
-                          className="text-sm font-bold text-brand-500 hover:text-brand-600 dark:text-white"
+                          className="text-sm font-bold underline text-blue-500 hover:text-blue-600 dark:text-white"
                         >
                           View
                         </Link>
