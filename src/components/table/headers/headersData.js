@@ -36,18 +36,40 @@ export const payrollsHeadersData = [
 export const payrollHeadersData = [
   {
     Header: "Earnings",
-    accessor: "title",
+    accessor: "earnings",
   },
   {
     Header: "Rate",
-    accessor: "date",
+    accessor: "rate",
   },
   {
     Header: "Hours",
-    accessor: "type",
+    accessor: "hours",
   },
   {
     Header: "Amount",
-    accessor: "status",
+    accessor: "amount",
+  }
+];
+
+export const payrollDeductionsHeadersData = [
+  {
+    Header: "Deductions",
+    accessor: "earnings",
+  },
+  {
+    Header: "Amount",
+    accessor: "amount",
+  }
+];
+
+export const payrollSummaryHeadersData = [
+  {
+    Header: "Summary",
+    accessor: "earnings",
+  },
+  {
+    Header: "Amount",
+    accessor: "amount",
   }
 ];

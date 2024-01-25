@@ -5,7 +5,12 @@ import Widget from 'components/widget/Widget';
 import { MdCheck } from 'react-icons/md';
 import { IoMdCalendar, IoMdWallet } from 'react-icons/io';
 import PayrollDetailsTable from './components/PayrollDetailsTable';
-import { payrollHeadersData } from 'components/table/headers/headersData';
+import {
+  payrollHeadersData,
+  payrollDeductionsHeadersData,
+  payrollSummaryHeadersData
+} from 'components/table/headers/headersData';
+import tableDataColumns from "./variables/tableDataCheck.json";
 
 const PayrollDetails = () => {
   const { payrollId } = useParams();
@@ -49,11 +54,25 @@ const PayrollDetails = () => {
           extraClass="col-span-2 md:col-span-1"
         />
       </div>
-      <div className="mt-5 grid grid-cols-1 gap-5">
-        <PayrollDetailsTable
-          columnsData={payrollHeadersData}
-          tableData={[]}
-        />
+      <div className="grid grid-cols-2 gap-5">
+        <div className='col-span-2'>
+          <PayrollDetailsTable
+            columnsData={payrollHeadersData}
+            tableData={tableDataColumns}
+          />
+        </div>
+        <div className='col-span-2 md:col-span-1'>
+          <PayrollDetailsTable
+            columnsData={payrollDeductionsHeadersData}
+            tableData={tableDataColumns}
+          />
+        </div>
+        <div className='col-span-2 md:col-span-1'>
+          <PayrollDetailsTable
+            columnsData={payrollSummaryHeadersData}
+            tableData={tableDataColumns}
+          />
+        </div>
       </div>
     </div>
   );
