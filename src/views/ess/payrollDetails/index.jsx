@@ -10,7 +10,6 @@ import {
   payrollDeductionsHeadersData,
   payrollSummaryHeadersData
 } from 'components/table/headers/headersData';
-import tableDataColumns from "./variables/tableDataCheck.json";
 
 const PayrollDetails = () => {
   const { payrollId } = useParams();
@@ -21,7 +20,7 @@ const PayrollDetails = () => {
   useEffect(() => {
     const fetchPayrollDetails = async () => {
       try {
-        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls/${payrollId}`);
+        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls/${payrollId}?format=details`);
         PayrollDetails(response?.data?.data);
       } catch (error) {
         console.error('Error fetching payroll details:', error);
@@ -31,7 +30,6 @@ const PayrollDetails = () => {
     fetchPayrollDetails();
   }, [companySlug, employeeId, payrollId]);
 
-  // Render the payroll details using the fetched data
   return (
     <div className="flex w-full flex-col gap-4">
       <div className="mt-3 gap-2 grid grid-cols-2 sm:gap-5 md:grid-cols-3">
@@ -58,19 +56,19 @@ const PayrollDetails = () => {
         <div className='col-span-2'>
           <PayrollDetailsTable
             columnsData={payrollHeadersData}
-            tableData={tableDataColumns}
+            tableData={payrollDetails?.taxable_earnings || []}
           />
         </div>
         <div className='col-span-2 md:col-span-1'>
           <PayrollDetailsTable
             columnsData={payrollDeductionsHeadersData}
-            tableData={tableDataColumns}
+            tableData={payrollDetails?.deductions || []}
           />
         </div>
         <div className='col-span-2 md:col-span-1'>
           <PayrollDetailsTable
             columnsData={payrollSummaryHeadersData}
-            tableData={tableDataColumns}
+            tableData={payrollDetails?.summary || []}
           />
         </div>
       </div>

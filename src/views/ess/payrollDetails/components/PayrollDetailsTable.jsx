@@ -6,8 +6,6 @@ import {
   useTable,
 } from "react-table";
 import { useMemo } from "react";
-import SubtleBadge from "components/badge/SubtleBadge";
-import { Link } from "react-router-dom";
 
 const PayrollDetailsTable = (props) => {
   const { columnsData, tableData, title } = props;
@@ -44,21 +42,23 @@ const PayrollDetailsTable = (props) => {
           </div>
         )}
       </div>
-      <div className="mt-2 h-full overflow-x-scroll xl:overflow-hidden">
+      <div className="mt-2 h-full overflow-x-auto xl:overflow-hidden">
         <table {...getTableProps()} className="w-full">
           <thead>
             {headerGroups.map((headerGroup, index) => (
               <tr {...headerGroup.getHeaderGroupProps()} key={index}>
                 {headerGroup.headers.map((column, index) => (
-                  <th
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    key={index}
-                    className="border-b border-gray-200 pr-8 pb-[10px] text-start dark:!border-navy-700"
-                  >
-                    <p className="text-md tracking-wide font-semibold text-gray-600">
-                      {column.render("Header")}
-                    </p>
-                  </th>
+                   <th
+                   {...column.getHeaderProps(column.getSortByToggleProps())}
+                   key={index}
+                   className={`border-b border-gray-200 pb-[10px] ${
+                     column.render('Header') === 'Amount' ? 'text-right' : 'text-start pr-8'
+                   } dark:!border-navy-700`}
+                 >
+                   <p className="text-md tracking-wide font-semibold text-gray-600">
+                     {column.render('Header')}
+                   </p>
+                 </th>
                 ))}
               </tr>
             ))}
@@ -71,28 +71,17 @@ const PayrollDetailsTable = (props) => {
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    let payrollLink = `${encodeURIComponent(cell.value)}`;
-                    if (cell.column.Header === "Status") {
+                    if (cell.column.Header === "Label") {
                       data = (
-                        <SubtleBadge
-                          state={cell.value}
-                          label={cell.value}
-                        />
-                      );
-                    } else if (cell.column.Header === "Date") {
-                      data = (
-                        <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          { cell?.value?.substring(0, 11) }
+                        <p className="text-sm font-bold text-right text-navy-700 dark:text-white">
+                          {cell.value}
                         </p>
                       );
-                    } else if (cell.column.Header === "Action") {
+                    } else if (cell.column.Header === "Amount") {
                       data = (
-                        <Link
-                          to={payrollLink}
-                          className="text-sm font-bold underline text-blue-500 hover:text-blue-600 dark:text-white"
-                        >
-                          View
-                        </Link>
+                        <p className="text-sm font-bold text-right text-navy-700 dark:text-white">
+                          {cell.value}
+                        </p>
                       );
                     } else {
                       data = (
@@ -103,7 +92,7 @@ const PayrollDetailsTable = (props) => {
                     }
                     return (
                       <td
-                        className="pt-[14px] pb-[18px] sm:text-[14px]"
+                        className="py-1.5 sm:text-[14px]"
                         {...cell.getCellProps()}
                         key={index}
                       >
