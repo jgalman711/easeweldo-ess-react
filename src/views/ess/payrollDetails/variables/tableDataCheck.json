@@ -1,0 +1,32 @@
+[
+  {
+    "earnings": "basic_salary",
+    "hours": 0,
+    "rate": 1,
+    "amount": "17500.00"
+  },
+  {
+    "earnings": "overtime",
+    "hours": 0,
+    "rate": 1.3,
+    "amount": 0
+  },
+  {
+    "earnings": "vacation leave",
+    "hours": 0,
+    "rate": 1,
+    "amount": 0
+  },
+  {
+    "earnings": "sick leave",
+    "hours": 0,
+    "rate": 1,
+    "amount": 0
+  },
+  {
+    "earnings": "holiday pay",
+    "hours": 8,
+    "rate": 1,
+    "amount": 100
+  }
+]

@@ -5,7 +5,11 @@ import Widget from 'components/widget/Widget';
 import { MdCheck } from 'react-icons/md';
 import { IoMdCalendar, IoMdWallet } from 'react-icons/io';
 import PayrollDetailsTable from './components/PayrollDetailsTable';
-import { payrollHeadersData } from 'components/table/headers/headersData';
+import {
+  payrollHeadersData,
+  payrollDeductionsHeadersData,
+  payrollSummaryHeadersData
+} from 'components/table/headers/headersData';
 
 const PayrollDetails = () => {
   const { payrollId } = useParams();
@@ -16,7 +20,7 @@ const PayrollDetails = () => {
   useEffect(() => {
     const fetchPayrollDetails = async () => {
       try {
-        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls/${payrollId}`);
+        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls/${payrollId}?format=details`);
         PayrollDetails(response?.data?.data);
       } catch (error) {
         console.error('Error fetching payroll details:', error);
@@ -26,7 +30,6 @@ const PayrollDetails = () => {
     fetchPayrollDetails();
   }, [companySlug, employeeId, payrollId]);
 
-  // Render the payroll details using the fetched data
   return (
     <div className="flex w-full flex-col gap-4">
       <div className="mt-3 gap-2 grid grid-cols-2 sm:gap-5 md:grid-cols-3">
@@ -49,11 +52,25 @@ const PayrollDetails = () => {
           extraClass="col-span-2 md:col-span-1"
         />
       </div>
-      <div className="mt-5 grid grid-cols-1 gap-5">
-        <PayrollDetailsTable
-          columnsData={payrollHeadersData}
-          tableData={[]}
-        />
+      <div className="grid grid-cols-2 gap-5">
+        <div className='col-span-2'>
+          <PayrollDetailsTable
+            columnsData={payrollHeadersData}
+            tableData={payrollDetails?.taxable_earnings || []}
+          />
+        </div>
+        <div className='col-span-2 md:col-span-1'>
+          <PayrollDetailsTable
+            columnsData={payrollDeductionsHeadersData}
+            tableData={payrollDetails?.deductions || []}
+          />
+        </div>
+        <div className='col-span-2 md:col-span-1'>
+          <PayrollDetailsTable
+            columnsData={payrollSummaryHeadersData}
+            tableData={payrollDetails?.summary || []}
+          />
+        </div>
       </div>
     </div>
   );

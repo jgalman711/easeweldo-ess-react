@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Card from "components/card";
 import banner from "assets/img/profile/banner.png";
 import client from "api/axios";
+import Button from "components/button/Button";
 
 
 const Clock = (props) => {
-  const { initialNextAction } = props;
+  const { initialNextAction, onUpdateClockIn, onUpdateClockOut } = props;
   const [nextAction, setNextAction] = useState("");
 
   const firstName = localStorage.getItem('firstName');
@@ -15,13 +16,30 @@ const Clock = (props) => {
   const storageUrl = process.env.REACT_APP_ES_STORAGE_URL
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleClockButtonClick = async () => {
+  const handleClockButtonClick = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
     try {
+      await new Promise(resolve => setTimeout(resolve, 800));
       const response = await client.post(`/companies/${companySlug}/employees/${employeeId}/clock`);
       const { data } = response.data;
-      setNextAction(data.next_action);
-    } catch (error) {}
+
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        setIsSuccess(false);
+        setNextAction(data.next_action);
+        onUpdateClockIn(data.clock_in);
+        onUpdateClockOut(data.clock_out)
+      }, 1200);
+    } catch (error) {
+      setIsLoading(false);
+      setIsSuccess(false);
+    }
   };
 
   return (
@@ -42,14 +60,15 @@ const Clock = (props) => {
         <p className="text-base font-normal text-gray-600">{jobTitle}</p>
       </div>
 
-      <div className="mt-6 mb-3 flex flex-col w-full items-center">
-        <button
-          href=" "
-          className="linear flex items-center justify-center rounded-lg bg-brand-500 w-full px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200"
+      <div className="my-3 flex flex-col w-full items-center">
+        <Button
+          label={isLoading ? "Processing..." : (nextAction || initialNextAction || "Clock In")}
+          status="positive"
           onClick={handleClockButtonClick}
-        >
-          { nextAction || initialNextAction || "Clock In" }
-        </button>
+          disabled={isLoading}
+          isLoading={isLoading && !isSuccess}
+          extra="w-full"
+        />
       </div>
     </Card>
   );
