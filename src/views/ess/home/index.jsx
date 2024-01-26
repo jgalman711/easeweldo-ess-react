@@ -5,14 +5,12 @@ import PayrollsTable from "./components/PayrollsTable";
 import { MdAccessTime, MdToday } from "react-icons/md";
 import React, { useState, useEffect } from "react";
 import client from "api/axios"
-// import LeavesTable from "./components/LeavesTable";
 
 const Home = () => {
   const [data, setData] = useState([])
   const [currentDaySchedule, setCurrentDaySchedule] = useState({});
   const [clockInTime, setClockInTime] = useState("--:--:--");
   const [clockOutTime, setClockOutTime] = useState("--:--:--");
-  const [formattedToday, setFormattedToday] = useState("");
   const [nextAction, setNextAction] = useState("");
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
@@ -25,8 +23,13 @@ const Home = () => {
     }
 
     const fetchTimeRecords = () => {
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const formattedDate = `${year}-${month}-${day}`;
       return client
-        .get(`/companies/${companySlug}/employees/${employeeId}/time-records?date_from=${formattedToday}&date_to=${formattedToday}`)
+        .get(`/companies/${companySlug}/employees/${employeeId}/time-records?date_from=${formattedDate}&date_to=${formattedDate}`)
         .then((response) => {
           const records = (response.data?.data || [])[0] || {};
           setClockInTime(records?.clock_in?.substring(11, 19) || "--:--:--");
@@ -35,20 +38,10 @@ const Home = () => {
         });
     };
 
-    const getFormattedToday = () => {
-      const currentDate = new Date();
-      const year = currentDate.getFullYear();
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-      const day = String(currentDate.getDate()).padStart(2, '0');
-      const formattedDate = `${year}-${month}-${day}`;
-      setFormattedToday(formattedDate);
-    };
-
     fetchInfo();
     fetchTimeRecords();
-    getFormattedToday();
 
-  }, [companySlug, employeeId, formattedToday])
+  }, [companySlug, employeeId])
 
   useEffect(() => {
     if (data && Object.keys(data).length > 0) {
@@ -81,7 +74,11 @@ const Home = () => {
     <div className="flex w-full flex-col gap-4">
       <div className="w-ful mt-3 flex h-fit flex-col gap-4 lg:grid lg:grid-cols-12">
         <div className="col-span-12 sm:col-span-5 3xl:col-span-4 lg:!mb-0">
-          <Clock initialNextAction={nextAction}/>
+          <Clock
+            initialNextAction={nextAction}
+            onUpdateClockIn={setClockInTime}
+            onUpdateClockOut={setClockOutTime}
+          />
         </div>
         <div className="col-span-12 sm:col-span-7 3xl:col-span-8">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-2 3xl:grid-cols-3">
@@ -110,9 +107,6 @@ const Home = () => {
       <div className="mt-5 grid grid-cols-1">
         <PayrollsTable />
       </div>
-      {/* <div className="mt-5 grid grid-cols-1">
-        <LeavesTable />
-      </div> */}
     </div>
   );
 };
