@@ -30,6 +30,7 @@ const PayrollsTable = () => {
       columnsData={payrollsHeadersData}
       tableData={payrollsData}
       title="Payrolls"
+      viewAll={true}
     />
   );
 };

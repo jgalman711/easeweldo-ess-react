@@ -8,9 +8,10 @@ import {
 import { useMemo } from "react";
 import SubtleBadge from "components/badge/SubtleBadge";
 import { Link } from "react-router-dom";
+import { MdOutlineArrowForward } from "react-icons/md";
 
 const PayrollsTable = (props) => {
-  const { columnsData, tableData, title } = props;
+  const { columnsData, tableData, title, viewAll } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -44,7 +45,7 @@ const PayrollsTable = (props) => {
           </div>
         )}
       </div>
-      <div className="mt-2 h-full overflow-x-scroll xl:overflow-hidden">
+      <div className="mt-2 h-full overflow-x-auto xl:overflow-hidden">
         <table {...getTableProps()} className="w-full">
           <thead>
             {headerGroups.map((headerGroup, index) => (
@@ -127,6 +128,14 @@ const PayrollsTable = (props) => {
           </tbody>
         </table>
       </div>
+      {viewAll && (
+        <div className="mt-1 flex items-center justify-end text-brand-500">
+          <Link to="/ess/payrolls" className="flex items-center p-3 font-semibold">
+            View All
+            <MdOutlineArrowForward className="mx-2 text-xl" />
+          </Link>
+        </div>
+      )}
     </Card>
   );
 };
