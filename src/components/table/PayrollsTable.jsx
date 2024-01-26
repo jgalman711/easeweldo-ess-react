@@ -72,7 +72,7 @@ const PayrollsTable = (props) => {
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    let payrollLink = `${encodeURIComponent(cell.value)}`;
+                    let payrollLink = `/ess/payrolls/${encodeURIComponent(cell.value)}`;
                     if (cell.column.Header === "Status") {
                       data = (
                         <SubtleBadge
@@ -89,10 +89,10 @@ const PayrollsTable = (props) => {
                     } else if (cell.column.Header === "Action") {
                       data = (
                         <Link
+                          className="text-md flex items-center p-3 font-semibold underline text-blue-500 hover:text-blue-600 dark:text-white"
                           to={payrollLink}
-                          className="text-sm font-bold underline text-blue-500 hover:text-blue-600 dark:text-white"
                         >
-                          View
+                          Details
                         </Link>
                       );
                     } else {
@@ -129,7 +129,7 @@ const PayrollsTable = (props) => {
         </table>
       </div>
       {viewAll && (
-        <div className="mt-1 flex items-center justify-end text-brand-500">
+        <div className="mt-1 flex items-center justify-end text-brand-500 border-t border-gray-200">
           <Link to="/ess/payrolls" className="flex items-center p-3 font-semibold">
             View All
             <MdOutlineArrowForward className="mx-2 text-xl" />
