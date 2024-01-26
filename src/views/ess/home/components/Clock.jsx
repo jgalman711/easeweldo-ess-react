@@ -33,8 +33,8 @@ const Clock = (props) => {
         setIsLoading(false);
         setIsSuccess(false);
         setNextAction(data.next_action);
-        onUpdateClockIn(data.clock_in);
-        onUpdateClockOut(data.clock_out)
+        onUpdateClockIn(data?.clock_in?.substring(11, 19) || "--:--:--");
+        onUpdateClockOut(data?.clock_out?.substring(11, 19) || "--:--:--")
       }, 1200);
     } catch (error) {
       setIsLoading(false);

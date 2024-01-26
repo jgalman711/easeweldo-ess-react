@@ -65,7 +65,7 @@ export const payrollNonTaxablesHeadersData = [
 
 export const payrollDeductionsHeadersData = [
   {
-    Header: "Deductions",
+    Header: "Contributions and Deductions",
     accessor: "label",
   },
   {
@@ -73,6 +73,17 @@ export const payrollDeductionsHeadersData = [
     accessor: "amount",
   }
 ];
+
+export const payrollOtherDeductionsHeadersData = [
+  {
+    Header: "Other Deductions",
+    accessor: "label",
+  },
+  {
+    Header: "Amount",
+    accessor: "amount",
+  }
+]
 
 export const payrollSummaryHeadersData = [
   {
