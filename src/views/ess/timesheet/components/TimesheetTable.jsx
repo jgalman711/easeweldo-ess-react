@@ -32,7 +32,7 @@ const TimesheetTable = (props) => {
     prepareRow,
     initialState,
   } = tableInstance;
-  initialState.pageSize = 5;
+  initialState.pageSize = 100;
 
   return (
     <Card extra={"w-full h-full p-4 sm:overflow-x-auto"}>
@@ -71,6 +71,7 @@ const TimesheetTable = (props) => {
                   {row.cells.map((cell, index) => {
                     let data = "";
                     if (cell.column.Header === "Status") {
+                      cell.value = cell.value === "missed-clock-out" || cell.value === "missed-clock-in" ? "missed" : cell.value;
                       data = (
                         <SubtleBadge
                           state={cell.value}
@@ -86,7 +87,7 @@ const TimesheetTable = (props) => {
                     } else if (cell.column.Header === "Clock In" || cell.column.Header === "Clock Out") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          { cell?.value ? cell?.value?.substring(11, 19) : "--:--:--"}
+                          { cell?.value ? cell?.value : "--:--:--"}
                         </p>
                       );
                     } else if (cell.column.Header === "Source") {

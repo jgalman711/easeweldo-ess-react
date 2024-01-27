@@ -8,16 +8,12 @@ export const payrollsHeadersData = [
     accessor: "basic_salary",
   },
   {
-    Header: "Deductions",
-    accessor: "total_deductions",
+    Header: "Gross Income",
+    accessor: "gross_income",
   },
   {
     Header: "Contributions",
     accessor: "total_contributions",
-  },
-  {
-    Header: "Non-taxables",
-    accessor: "total_non_taxable_earnings"
   },
   {
     Header: "Net Income",
@@ -65,7 +61,7 @@ export const payrollNonTaxablesHeadersData = [
 
 export const payrollDeductionsHeadersData = [
   {
-    Header: "Deductions",
+    Header: "Contributions and Deductions",
     accessor: "label",
   },
   {
@@ -73,6 +69,17 @@ export const payrollDeductionsHeadersData = [
     accessor: "amount",
   }
 ];
+
+export const payrollOtherDeductionsHeadersData = [
+  {
+    Header: "Other Deductions",
+    accessor: "label",
+  },
+  {
+    Header: "Amount",
+    accessor: "amount",
+  }
+]
 
 export const payrollSummaryHeadersData = [
   {

@@ -8,12 +8,13 @@ import PayrollDetailsTable from './components/PayrollDetailsTable';
 import {
   payrollHeadersData,
   payrollDeductionsHeadersData,
+  payrollOtherDeductionsHeadersData,
   payrollSummaryHeadersData
 } from 'components/table/headers/headersData';
 
 const PayrollDetails = () => {
   const { payrollId } = useParams();
-  const [payrollDetails, PayrollDetails] = useState([]);
+  const [payrollDetails, setPayrollDetails] = useState([]);
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
 
@@ -21,7 +22,7 @@ const PayrollDetails = () => {
     const fetchPayrollDetails = async () => {
       try {
         const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls/${payrollId}?format=details`);
-        PayrollDetails(response?.data?.data);
+        setPayrollDetails(response?.data?.data);
       } catch (error) {
         console.error('Error fetching payroll details:', error);
       }
@@ -48,7 +49,7 @@ const PayrollDetails = () => {
         <Widget
           icon={<IoMdWallet className="h-6 w-6" />}
           title={"Net Income"}
-          subtitle={"$" + payrollDetails?.net_income}
+          subtitle={"₱" + payrollDetails?.net_income}
           extraClass="col-span-2 md:col-span-1"
         />
       </div>
@@ -56,7 +57,7 @@ const PayrollDetails = () => {
         <div className='col-span-2'>
           <PayrollDetailsTable
             columnsData={payrollHeadersData}
-            tableData={payrollDetails?.taxable_earnings || []}
+            tableData={payrollDetails?.earnings || []}
           />
         </div>
         <div className='col-span-2 md:col-span-1'>
@@ -70,6 +71,14 @@ const PayrollDetails = () => {
             columnsData={payrollSummaryHeadersData}
             tableData={payrollDetails?.summary || []}
           />
+        </div>
+        <div className='col-span-2 md:col-span-1'>
+          {payrollDetails?.other_deductions && payrollDetails?.other_deductions.length > 0 && (
+            <PayrollDetailsTable
+              columnsData={payrollOtherDeductionsHeadersData}
+              tableData={payrollDetails?.other_deductions}
+            />
+          )}
         </div>
       </div>
     </div>

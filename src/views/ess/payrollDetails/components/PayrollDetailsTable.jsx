@@ -31,7 +31,7 @@ const PayrollDetailsTable = (props) => {
     prepareRow,
     initialState,
   } = tableInstance;
-  initialState.pageSize = 5;
+  initialState.pageSize = 100;
 
   return (
     <Card extra={"w-full h-full p-4 sm:overflow-x-auto"}>
@@ -71,28 +71,22 @@ const PayrollDetailsTable = (props) => {
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    if (cell.column.Header === "Label") {
+                    if (cell.column.Header === "Amount") {
                       data = (
-                        <p className="text-sm font-bold text-right text-navy-700 dark:text-white">
-                          {cell.value}
-                        </p>
-                      );
-                    } else if (cell.column.Header === "Amount") {
-                      data = (
-                        <p className="text-sm font-bold text-right text-navy-700 dark:text-white">
+                        <p className="font-bold text-right text-navy-700 dark:text-white">
                           {cell.value}
                         </p>
                       );
                     } else {
                       data = (
-                        <p className="text-sm font-bold text-navy-700 dark:text-white">
+                        <p className="font-bold text-navy-700 dark:text-white">
                           {cell.value}
                         </p>
                       );
                     }
                     return (
                       <td
-                        className="py-1.5 sm:text-[14px]"
+                        className="py-2 text-sm"
                         {...cell.getCellProps()}
                         key={index}
                       >
