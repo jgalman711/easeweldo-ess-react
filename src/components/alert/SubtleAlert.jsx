@@ -8,11 +8,11 @@ const SubtleAlert = ({ type, extraClass, title, description }) => {
     setIsHidden(true);
   };
 
-  const alertClasses = `flex justify-between h-[72px] w-full items-center py-[6px] pl-[17px] pr-[6px] dark:!bg-navy-700 rounded-lg ${isHidden ? 'hidden' : ''} ${extraClass || ''} ${
+  const alertClasses = `flex justify-between h-[72px] w-full items-center py-[6px] pl-[17px] pr-[6px] rounded-lg ${isHidden ? 'hidden' : ''} ${extraClass || ''} ${
     type === 'success' ? 'bg-green-200' :
     type === 'error' ? 'bg-red-200' :
     type === 'info' ? 'bg-blue-200' : ''
-  }`;
+  } dark:!bg-navy-700`;
   return (
     <div className={ alertClasses }>
       <div className="flex h-full w-full gap-2 pt-[6px] justify-start">

@@ -33,7 +33,7 @@ const Banner = ({ data }) => {
         </h4>
         <p className={`text-sm font-normal`}>
           Status:
-          <span className={`text-base font-semibold ${statusClass}`}> {accountStatus}</span>
+          <span className={`text-base ${statusClass}`}> {accountStatus}</span>
         </p>
       </div>
     </Card>
