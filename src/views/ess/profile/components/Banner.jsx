@@ -5,6 +5,15 @@ import Card from "components/card";
 const Banner = ({ data }) => {
   const profilePicture = localStorage.getItem('profilePicture');
   const storageUrl = process.env.REACT_APP_ES_STORAGE_URL
+
+  const accountStatus = data?.data?.status || 'inactive';
+  const statusClass =
+    accountStatus === 'active'
+      ? 'text-green-500'
+      : accountStatus === 'inactive'
+      ? 'text-red-500'
+      : 'text-yellow-500';
+
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
       {/* Background and profile */}
@@ -22,7 +31,10 @@ const Banner = ({ data }) => {
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {data?.data?.full_name || ''}
         </h4>
-        <p className="text-base font-normal text-gray-700">Account Type: Employee</p>
+        <p className={`text-sm font-normal`}>
+          Status:
+          <span className={`text-base font-semibold ${statusClass}`}> {accountStatus}</span>
+        </p>
       </div>
     </Card>
   );

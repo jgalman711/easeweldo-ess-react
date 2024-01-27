@@ -8,16 +8,12 @@ export const payrollsHeadersData = [
     accessor: "basic_salary",
   },
   {
-    Header: "Deductions",
-    accessor: "total_deductions",
+    Header: "Gross Income",
+    accessor: "gross_income",
   },
   {
     Header: "Contributions",
     accessor: "total_contributions",
-  },
-  {
-    Header: "Non-taxables",
-    accessor: "total_non_taxable_earnings"
   },
   {
     Header: "Net Income",

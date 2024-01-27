@@ -36,6 +36,13 @@ const PayrollsTable = (props) => {
   } = tableInstance;
   initialState.pageSize = 100;
 
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-PH', {
+      style: 'currency',
+      currency: 'PHP'
+    }).format(amount);
+  };
+
   return (
     <Card extra={"w-full h-full p-4 sm:overflow-x-auto"}>
       <div className="relative flex items-center justify-between">
@@ -95,6 +102,17 @@ const PayrollsTable = (props) => {
                           Details
                         </Link>
                       );
+                    } else if (
+                        cell.column.Header === "Basic Salary" ||
+                        cell.column.Header === "Gross Income" ||
+                        cell.column.Header === "Contributions" ||
+                        cell.column.Header === "Net Income"
+                      ) {
+                      data = (
+                        <p className="text-sm font-bold text-navy-700 dark:text-white">
+                          {formatCurrency(cell.value)}
+                        </p>
+                      )
                     } else {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">

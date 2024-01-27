@@ -87,7 +87,7 @@ const TimesheetTable = (props) => {
                     } else if (cell.column.Header === "Clock In" || cell.column.Header === "Clock Out") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          { cell?.value ? cell?.value?.substring(11, 19) : "--:--:--"}
+                          { cell?.value ? cell?.value : "--:--:--"}
                         </p>
                       );
                     } else if (cell.column.Header === "Source") {

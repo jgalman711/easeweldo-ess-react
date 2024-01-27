@@ -49,7 +49,7 @@ const PayrollDetails = () => {
         <Widget
           icon={<IoMdWallet className="h-6 w-6" />}
           title={"Net Income"}
-          subtitle={"$" + payrollDetails?.net_income}
+          subtitle={"₱" + payrollDetails?.net_income}
           extraClass="col-span-2 md:col-span-1"
         />
       </div>
@@ -72,14 +72,14 @@ const PayrollDetails = () => {
             tableData={payrollDetails?.summary || []}
           />
         </div>
-        {/* <div className='col-span-2 md:col-span-1'>
+        <div className='col-span-2 md:col-span-1'>
           {payrollDetails?.other_deductions && payrollDetails?.other_deductions.length > 0 && (
             <PayrollDetailsTable
               columnsData={payrollOtherDeductionsHeadersData}
               tableData={payrollDetails?.other_deductions}
             />
           )}
-        </div> */}
+        </div>
       </div>
     </div>
   );

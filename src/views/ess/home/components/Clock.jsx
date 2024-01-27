@@ -17,7 +17,6 @@ const Clock = (props) => {
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleClockButtonClick = async (e) => {
     e.preventDefault();
@@ -28,17 +27,14 @@ const Clock = (props) => {
       const response = await client.post(`/companies/${companySlug}/employees/${employeeId}/clock`);
       const { data } = response.data;
 
-      setIsSuccess(true);
       setTimeout(() => {
         setIsLoading(false);
-        setIsSuccess(false);
         setNextAction(data.next_action);
-        onUpdateClockIn(data?.clock_in?.substring(11, 19) || "--:--:--");
-        onUpdateClockOut(data?.clock_out?.substring(11, 19) || "--:--:--")
+        onUpdateClockIn(data?.clock_in || "--:--:--");
+        onUpdateClockOut(data?.clock_out || "--:--:--")
       }, 1200);
     } catch (error) {
       setIsLoading(false);
-      setIsSuccess(false);
     }
   };
 
@@ -62,11 +58,11 @@ const Clock = (props) => {
 
       <div className="my-3 flex flex-col w-full items-center">
         <Button
-          label={isLoading ? "Processing..." : (nextAction || initialNextAction || "Clock In")}
+          label={(isLoading) ? "Processing..." : (nextAction || initialNextAction || "Clock In")}
           status="positive"
           onClick={handleClockButtonClick}
           disabled={isLoading}
-          isLoading={isLoading && !isSuccess}
+          isLoading={isLoading}
           extra="w-full"
         />
       </div>

@@ -32,8 +32,8 @@ const Home = () => {
         .get(`/companies/${companySlug}/employees/${employeeId}/time-records?date_from=${formattedDate}&date_to=${formattedDate}`)
         .then((response) => {
           const records = (response.data?.data || [])[0] || {};
-          setClockInTime(records?.clock_in?.substring(11, 19) || "--:--:--");
-          setClockOutTime(records?.clock_out?.substring(11, 19) || "--:--:--");
+          setClockInTime(records?.clock_in || "--:--:--");
+          setClockOutTime(records?.clock_out || "--:--:--");
           setNextAction(records?.next_action)
         });
     };
