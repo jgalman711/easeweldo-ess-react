@@ -135,11 +135,11 @@ const TimesheetTable = (props) => {
             )}
           </tbody>
         </table>
-        <Pagination
+      </div>
+      <Pagination
           onPageChange={onPageChange}
           paginationData={paginationData}
         />
-      </div>
     </Card>
   );
 };
