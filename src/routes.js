@@ -21,6 +21,8 @@ import {
   // MdDateRange,
 } from "react-icons/md";
 import QrGenerate from "views/ess/qrGenerate";
+import { IoIosQrScanner } from "react-icons/io";
+import QrScan from "views/ess/qrScan";
 
 const routes = [
   {
@@ -64,6 +66,13 @@ const routes = [
     path: "generate-qr",
     icon: <MdQrCode className="h-6 w-6" />,
     component: <QrGenerate />,
+  },
+  {
+    name: "Scan QR",
+    layout: "/ess",
+    path: "scan-qr",
+    icon: <IoIosQrScanner className="h-6 w-6" />,
+    component: <QrScan />,
   },
   {
     name: "Sign In",
