@@ -13,7 +13,7 @@ const AdditionalInformation = () => {
           Here you can change your additional information
         </p>
       </div>
-       <div className="grid grid-cols-4 gap-4 rounded-2xl bg-white py-3 dark:!bg-navy-700">
+       <div className="grid grid-cols-4 gap-4 rounded-2xl py-3">
         <InputField
           label="Contact Name"
           id="contact_name"
