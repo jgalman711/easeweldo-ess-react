@@ -9,9 +9,10 @@ import { useMemo } from "react";
 import SubtleBadge from "components/badge/SubtleBadge";
 import { Link } from "react-router-dom";
 import { MdOutlineArrowForward } from "react-icons/md";
+import Pagination from "components/pagination/Pagination";
 
 const PayrollsTable = (props) => {
-  const { columnsData, tableData, title, viewAll } = props;
+  const { columnsData, tableData, paginationData, onPageChange, title, viewAll } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -153,6 +154,12 @@ const PayrollsTable = (props) => {
             <MdOutlineArrowForward className="mx-2 text-xl" />
           </Link>
         </div>
+      )}
+      {paginationData && (
+        <Pagination
+          onPageChange={onPageChange}
+          paginationData={paginationData}
+        />
       )}
     </Card>
   );

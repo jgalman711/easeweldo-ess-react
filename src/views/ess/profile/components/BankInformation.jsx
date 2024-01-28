@@ -62,7 +62,7 @@ const BankInformation = ({ data }) => {
         </p>
       </div>
       {/* Project 1 */}
-      <div className="grid grid-cols-4 gap-4 rounded-2xl bg-white py-3 dark:!bg-navy-700">
+      <div className="grid grid-cols-4 gap-4 rounded-2xl py-3">
         <InputField
           label="Bank Name"
           id="bank_name"
