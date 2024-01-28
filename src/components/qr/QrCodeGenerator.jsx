@@ -5,7 +5,6 @@ import CryptoJS from 'crypto-js';
 const QrCodeGenerator = () => {
   const employeeId = localStorage.getItem('id');
   const secretKey = process.env.REACT_APP_ES_SECRET_KEY;
-  console.log(secretKey);
   const encryptId = (id) => {
     return CryptoJS.AES.encrypt(id, secretKey).toString();
   };
