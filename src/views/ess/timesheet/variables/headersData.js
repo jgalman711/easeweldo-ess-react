@@ -1,7 +1,7 @@
 export const headersData = [
   {
     Header: "Date",
-    accessor: "expected_clock_in",
+    accessor: "date",
   },
   {
     Header: "Clock In",

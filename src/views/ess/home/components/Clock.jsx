@@ -13,7 +13,7 @@ const Clock = (props) => {
   const lastName = localStorage.getItem('lastName');
   const jobTitle = localStorage.getItem('jobTitle');
   const profilePicture = localStorage.getItem('profilePicture');
-  const storageUrl = process.env.REACT_APP_ES_STORAGE_URL
+  const storageUrl = process.env.REACT_APP_ES_STORAGE_URL;
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
   const [isLoading, setIsLoading] = useState(false);

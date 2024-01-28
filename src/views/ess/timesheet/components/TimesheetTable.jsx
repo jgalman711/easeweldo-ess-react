@@ -7,9 +7,16 @@ import {
 } from "react-table";
 import { useMemo } from "react";
 import SubtleBadge from "components/badge/SubtleBadge";
+import Pagination from "components/pagination/Pagination";
 
 const TimesheetTable = (props) => {
-  const { columnsData, tableData, title } = props;
+  const {
+    columnsData,
+    tableData,
+    paginationData,
+    onPageChange,
+    title
+  } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -81,7 +88,7 @@ const TimesheetTable = (props) => {
                     } else if (cell.column.Header === "Date") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          { cell?.value?.substring(0, 11) }
+                          { cell?.value }
                         </p>
                       );
                     } else if (cell.column.Header === "Clock In" || cell.column.Header === "Clock Out") {
@@ -129,6 +136,10 @@ const TimesheetTable = (props) => {
           </tbody>
         </table>
       </div>
+      <Pagination
+          onPageChange={onPageChange}
+          paginationData={paginationData}
+        />
     </Card>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MdCheckCircle } from 'react-icons/md';
+import { MdOutlineError } from 'react-icons/md';
 
 const SubtleAlert = ({ type, extraClass, title, description }) => {
 
@@ -8,28 +8,24 @@ const SubtleAlert = ({ type, extraClass, title, description }) => {
     setIsHidden(true);
   };
 
-  const alertClasses = `flex justify-between h-[72px] w-full items-center py-[6px] pl-[17px] pr-[6px] rounded-lg ${isHidden ? 'hidden' : ''} ${extraClass || ''} ${
-    type === 'success' ? 'bg-green-200' :
-    type === 'error' ? 'bg-red-200' :
-    type === 'info' ? 'bg-blue-200' : ''
-  } dark:!bg-navy-700`;
+  const color = `${
+    type === 'success' ? 'green' :
+    type === 'error' ? 'red' :
+    type === 'info' ? 'yellow' : 'blue'
+  }`;
+
   return (
-    <div className={ alertClasses }>
-      <div className="flex h-full w-full gap-2 pt-[6px] justify-start">
-        <MdCheckCircle 
-          className="text-green-500 mt-1"
-          size={20}
-        />
-        <h5 className="text-base text-navy-700 dark:!text-white flex flex-col">
-          <span className="pr-[5px] font-bold text-navy-700 dark:!text-white">{ title }</span>
-          { description }
-        </h5>
+    <div className={`flex items-center p-4 mb-4 text-sm text-${color}-800 rounded-lg bg-${color}-50 dark:bg-gray-800 dark:text-${color}-400 ${isHidden ? 'hidden' : ''} ${extraClass || ''}`} role="alert">
+      <MdOutlineError className='w-5 h-5' />
+      <div className='ml-2'>
+        <span className="font-medium">{title}</span> {description}
       </div>
-      <div className="mb-[26px] flex rounded-md hover:bg-white/20 text-navy-700 dark:text-white h-9 w-9 cursor-pointer items-center justify-center text-xl font-bold" onClick={handleRemoveClick}>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+      <button type="button" class={`ms-auto -mx-1.5 -my-1.5 bg-${color}-50 text-${color}-500 rounded-lg focus:ring-2 focus:ring-${color}-400 p-1.5 hover:bg-${color}-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700`} aria-label="Close" onClick={handleRemoveClick}>
+        <span class="sr-only">Close</span>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
         </svg>
-      </div>
+      </button>
     </div>
   );
 };

@@ -17,8 +17,10 @@ import {
   MdLock,
   MdWork,
   MdAccessTimeFilled,
+  MdQrCode,
   // MdDateRange,
 } from "react-icons/md";
+import QrGenerate from "views/ess/qrGenerate";
 
 const routes = [
   {
@@ -55,6 +57,13 @@ const routes = [
     path: "payrolls",
     icon: <MdWork className="h-6 w-6" />,
     component: <Payrolls />,
+  },
+  {
+    name: "Generate QR",
+    layout: "/ess",
+    path: "generate-qr",
+    icon: <MdQrCode className="h-6 w-6" />,
+    component: <QrGenerate />,
   },
   {
     name: "Sign In",

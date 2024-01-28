@@ -2,10 +2,10 @@ import InputField from "components/fields/InputField";
 import Checkbox from "components/checkbox";
 import React, { useState } from 'react';
 import client from "api/axios"
-import Alert from "components/alert/Alert";
 import { Link } from "react-router-dom";
 import eslogo from "assets/img/auth/logo.png";
 import Button from "components/button/Button";
+import SubtleAlert from "components/alert/SubtleAlert";
 
 export default function SignIn() {
   const [error, setError] = useState(null);
@@ -81,7 +81,7 @@ export default function SignIn() {
           Login to Workhub
         </p>
 
-        {error && <Alert
+        {error && <SubtleAlert
           type="error"
           description={error}
           extraClass="mb-4"
