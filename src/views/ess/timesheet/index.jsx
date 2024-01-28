@@ -4,42 +4,40 @@ import React, { useState, useEffect } from "react";
 import client from "api/axios"
 import Widget from "components/widget/Widget";
 import { MdAccessTime, MdToday } from "react-icons/md";
-// import Week from "../home/components/Week";
 
 const Timesheet = () => {
-  const [leavesData, setLeavesData] = useState([]);
+  const [timeRecordsData, setTimeRecordsData] = useState([]);
+  const [paginationData, setPaginationData] = useState([]);
   const [clockInTime, setClockInTime] = useState("--:--:--");
   const [clockOutTime, setClockOutTime] = useState("--:--:--");
   const [expectedClockInTime, setExpectedClockInTime] = useState("--:--:--");
   const [expectedClockOutTime, setExpectedClockOutTime] = useState("--:--:--");
-  const [nextAction, setNextAction] = useState("");
+
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
+  const itemsPerPage = 10; // for now static 10
+
+  const [url, setUrl] = useState(`/companies/${companySlug}/employees/${employeeId}/time-records?per_page=${itemsPerPage}&page=1`);
 
   useEffect(() => {
-    const fetchLeaves = async () => {
+    const fetchTimeRecordsData = async () => {
       try {
-        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/time-records`);
-        setLeavesData(response.data?.data);
+        const response = await client.get(url);
+        setTimeRecordsData(response.data?.data);
+        setPaginationData(response.data?.meta)
       } catch (error) {
-        console.error('Error fetching leaves:', error);
+        console.error('Error fetching time records:', error);
       }
     };
 
     if (companySlug && employeeId) {
-      fetchLeaves();
+      fetchTimeRecordsData();
     } else {
       console.error('Company slug or employee ID not available');
     }
-  }, [companySlug, employeeId]);
+  }, [companySlug, employeeId, url]);
 
   useEffect(() => {
-    // const fetchInfo = () => {
-    //   return client
-    //     .get(`/companies/${companySlug}/employees/${employeeId}/work-schedules/latest`)
-    //     .then((response) => setData(response.data));
-    // }
-
     const fetchTimeRecords = () => {
       const currentDate = new Date();
       const year = currentDate.getFullYear();
@@ -54,11 +52,9 @@ const Timesheet = () => {
           setClockOutTime(records?.clock_out || "--:--:--");
           setExpectedClockInTime(records?.clock_in || "");
           setExpectedClockOutTime(records?.clock_out || "");
-          setNextAction(records?.next_action)
         });
     };
 
-    // fetchInfo();
     fetchTimeRecords();
 
   }, [companySlug, employeeId])
@@ -68,6 +64,12 @@ const Timesheet = () => {
       return `${expectedClockInTime} - ${expectedClockOutTime}`;
     } else {
       return "Rest Day";
+    }
+  };
+
+  const onPageChange = (url) => {
+    if (url) {
+      setUrl(`${url}&per_page=${itemsPerPage}`);
     }
   };
 
@@ -96,7 +98,9 @@ const Timesheet = () => {
       <div className="grid grid-cols-1">
         <TimesheetTable
           columnsData={headersData}
-          tableData={leavesData}
+          tableData={timeRecordsData}
+          paginationData={paginationData}
+          onPageChange={onPageChange}
         />
       </div>
     </div>
