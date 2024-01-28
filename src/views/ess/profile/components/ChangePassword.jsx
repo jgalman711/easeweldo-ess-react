@@ -27,21 +27,21 @@ const ChangePassword = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // setIsLoading(true);
-    // try {
-    //   await new Promise(resolve => setTimeout(resolve, 800));
-    //   await client.put(`/companies/${companySlug}/employees/${employeeId}`, formData);
+    setIsLoading(true);
+    try {
+      await new Promise(resolve => setTimeout(resolve, 800));
+      await client.put(`/companies/${companySlug}/employees/${employeeId}`, formData);
 
-    //   setIsSuccess(true);
-    //   setTimeout(() => {
-    //     setIsLoading(false);
-    //     setIsSuccess(false);
-    //   }, 1000);
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        setIsSuccess(false);
+      }, 1000);
 
-    // } catch (error) {
-    //   setIsLoading(false);
-    //   setIsSuccess(false);
-    // }
+    } catch (error) {
+      setIsLoading(false);
+      setIsSuccess(false);
+    }
   };
 
   return (
