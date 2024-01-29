@@ -8,7 +8,7 @@ const QrScan = () => {
       <Card extra={"items-center w-full max-w-xl p-[16px] bg-cover"}>
         <div className="p-4 w-full">
           <h4 className="text-xl font-bold text-navy-700 dark:text-white">Scan QR Code</h4>
-          <p className="mt-2 text-base text-gray-600 mb-8">Swiftly record your attendance with a QR scan</p>
+          <p className="my-2 text-base text-gray-600">Record your attendance with a QR scan</p>
           <QrScanner />
         </div>
         <Link
