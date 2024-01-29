@@ -2,6 +2,7 @@
 
 import { HiX } from "react-icons/hi";
 import Links from "./components/Links";
+import SidebarCard from "./components/SidebarCard";
 
 import routes from "routes.js";
 import eslogo from "assets/img/layout/easeweldo-workhub.png";
@@ -20,13 +21,23 @@ const Sidebar = ({ open, onClose }) => {
         <HiX />
       </span>
 
-      <div className={`ml-[30px] mr-[50px] mt-[50px] flex items-center`}>
+      {/* <div className={`ml-[30px] mr-[50px] mt-[50px] flex items-center`}>
         <div className="mt-1 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
           <img
               className="h-11"
               src={eslogo}
               alt="Easeweldo Logo"
             />
+        </div>
+      </div> */}
+      <div className={`mx-[30px] mr-[40px] mt-[50px] flex items-center`}>
+        <div className="mt-1 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
+          {/* <img
+            className="h-11"
+            src={eslogo}
+            alt="Easeweldo Logo"
+          /> */}
+          Demo Company
         </div>
       </div>
       <div className="mt-[70px] mb-7 h-px bg-gray-300 dark:bg-white/30" />
@@ -37,6 +48,9 @@ const Sidebar = ({ open, onClose }) => {
       </ul>
 
       {/* Nav item end */}
+      <div className="flex justify-center">
+        <SidebarCard />
+      </div>
     </div>
   );
 };

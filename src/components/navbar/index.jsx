@@ -53,7 +53,7 @@ const Navbar = (props) => {
         </p>
       </div>
 
-      <div className="relative mt-[3px] flex h-[61px] w-[250px] flex-grow items-center justify-around gap-2 rounded-full bg-white px-2 py-2 shadow-xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-non md:flex-grow-0 md:gap-1 xl:gap-2">
+      <div className="relative mt-[3px] flex h-[61px] w-[250px] flex-grow items-center justify-around gap-1 rounded-full bg-white px-2 py-2 shadow-xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-non md:flex-grow-0">
         <span
           className="flex cursor-pointer text-xl text-gray-600 dark:text-white xl:hidden"
           onClick={onOpenSidenav}
