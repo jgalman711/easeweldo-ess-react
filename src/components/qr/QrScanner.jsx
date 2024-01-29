@@ -6,6 +6,7 @@ import SubtleAlert from "components/alert/SubtleAlert";
 
 const QrScanner = () => {
   const [clockInResponse, setClockInResponse] = useState("");
+  const [responseType, setResponseType] = useState("info");
   const companySlug = localStorage.getItem('companySlug');
   const secretKey = process.env.REACT_APP_ES_SECRET_KEY;
 
@@ -35,10 +36,12 @@ const QrScanner = () => {
       client
         .post(`/companies/${companySlug}/employees/${decryptedId}/clock`)
         .then((response) => {
-          setClockInResponse(response.data.data.message);
+          setClockInResponse(response.data.message);
+          setResponseType('success')
         })
         .catch((error) => {
           setClockInResponse(error.response.data.message);
+          setResponseType('error')
         });
     }
   
@@ -52,11 +55,11 @@ const QrScanner = () => {
     <div>
       {clockInResponse && (
          <SubtleAlert
-          type="error"
           description={clockInResponse}
+          type={responseType}
         />
       )}
-      <div className="mt-6" id="reader"></div>
+      <div id="reader"></div>
     </div>
   );
 };
