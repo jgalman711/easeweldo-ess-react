@@ -8,12 +8,11 @@ const QrCodeGenerator = () => {
   const encryptId = (id) => {
     return CryptoJS.AES.encrypt(id, secretKey).toString();
   };
-  const encryptedId = encryptId(employeeId);
 
   return (
     <div className="flex items-center justify-center w-full">
       <div className="max-w-lg p-6">
-        <QRCode value={encryptedId} size={200} />
+        <QRCode value={encryptId(employeeId)} size={200} />
       </div>
     </div>
   );
