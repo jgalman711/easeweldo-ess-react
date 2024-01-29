@@ -50,8 +50,8 @@ const Timesheet = () => {
           const records = (response.data?.data || [])[0] || {};
           setClockInTime(records?.clock_in || "--:--:--");
           setClockOutTime(records?.clock_out || "--:--:--");
-          setExpectedClockInTime(records?.clock_in || "");
-          setExpectedClockOutTime(records?.clock_out || "");
+          setExpectedClockInTime(records?.expected_clock_in || "");
+          setExpectedClockOutTime(records?.expected_clock_out || "");
         });
     };
 
