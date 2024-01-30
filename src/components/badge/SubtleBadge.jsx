@@ -7,7 +7,7 @@ const SubtleBadge = (props) => {
           ? "text-red-500 bg-red-100"
           : (state === "success" || state === "completed" || state === "approved" || state === "on-time")
           ? "text-green-500 bg-green-100"
-          : (state === "info" || state === "to-pay" || state === "late" || state === "missed")
+          : (state === "info" || state === "to-pay" || state === "late" || state === "missed" || state === "pending")
           ? "text-yellow-500 bg-yellow-100"
           : "text-blue-500 bg-blue-100"
       }`}

@@ -9,7 +9,7 @@ const TimeCorrectionIndex = () => {
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
   const itemsPerPage = 10; // for now static 10
-  const [url, setUrl] = useState(`/companies/${companySlug}/employees/${employeeId}/payrolls?per_page=${itemsPerPage}&page=1`);
+  const [url, setUrl] = useState(`/companies/${companySlug}/employees/${employeeId}/time-corrections?per_page=${itemsPerPage}&page=1`);
   
   useEffect(() => {
     const fetchTimeCorrectionRequests = async () => {
@@ -17,7 +17,6 @@ const TimeCorrectionIndex = () => {
         const response = await client.get(url);
         setTimeCorrectionData(response.data?.data);
         setPaginationData(response.data?.meta);
-        console.log(response.data)
       } catch (error) {
         console.error('Error fetching records:', error);
       }

@@ -27,6 +27,7 @@ import { IoIosQrScanner } from "react-icons/io";
 import QrScan from "views/ess/qrScan";
 import TimeCorrectionIndex from "views/ess/requests/timeCorrection";
 import TimeCorrectionCreate from "views/ess/requests/timeCorrection/create";
+import TimeCorrectionEdit from "views/ess/requests/timeCorrection/edit";
 
 const routes = [
   {
@@ -57,6 +58,14 @@ const routes = [
     layout: "/ess",
     sidebar: true,
     component: <TimeCorrectionIndex />,
+  },
+  {
+    name: "Time Corrections",
+    layout: "/ess",
+    path: "time-corrections/edit/:correctionId",
+    icon: <MdWork className="h-6 w-6" />,
+    component: <TimeCorrectionEdit />,
+    sidebar: false,
   },
   {
     name: "Time Corrections",

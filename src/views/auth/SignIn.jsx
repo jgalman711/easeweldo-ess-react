@@ -49,6 +49,7 @@ export default function SignIn() {
 
       localStorage.setItem('authToken', authToken);
       localStorage.setItem('companySlug', company.slug);
+      localStorage.setItem('companyName', company.name);
       localStorage.setItem('id', employee.id);
       localStorage.setItem('firstName', employee.first_name);
       localStorage.setItem('lastName', employee.last_name);

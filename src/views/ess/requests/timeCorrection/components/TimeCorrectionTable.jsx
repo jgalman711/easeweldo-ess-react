@@ -77,7 +77,7 @@ const TimeCorrectionsTable = (props) => {
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    let link = `${encodeURIComponent(cell.value)}`;
+                    let link = `edit/${encodeURIComponent(cell.value)}`;
                     if (cell.column.Header === "Status") {
                       data = (
                         <SubtleBadge
@@ -97,7 +97,7 @@ const TimeCorrectionsTable = (props) => {
                           className="text-md flex items-center p-3 font-semibold underline text-blue-500 hover:text-blue-600 dark:text-white"
                           to={link}
                         >
-                          Details
+                          Edit
                         </Link>
                       );
                     } else {
@@ -133,7 +133,7 @@ const TimeCorrectionsTable = (props) => {
           </tbody>
         </table>
       </div>
-      {paginationData && (
+      {paginationData.total > paginationData.per_page && (
         <Pagination
           onPageChange={onPageChange}
           paginationData={paginationData}

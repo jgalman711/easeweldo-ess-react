@@ -98,10 +98,6 @@ export const timeCorrectionsHeadersData = [
     accessor: "date",
   },
   {
-    Header: "Title",
-    accessor: "title",
-  },
-  {
     Header: "Clock In",
     accessor: "clock_in",
   },
