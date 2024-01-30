@@ -39,15 +39,15 @@ const TimeCorrectionsTable = (props) => {
 
   return (
     <Card extra={"w-full h-full p-4 sm:overflow-x-auto"}>
-      <div className="relative flex items-center justify-end">
+      <div className="flex items-center justify-between pr-4">
+        <div className="text-gray-600">
+          {/* <span>Your Label</span> */}
+        </div>
         <Link
           to="create"
-          className="mb-4 text-white px-4 py-2 linear flex cursor-pointer items-center justify-center rounded-xl font-bold transition duration-200 bg-brand-500"
+          className="mb-4 text-white p-4 linear flex cursor-pointer items-center justify-center rounded-3xl font-bold transition duration-200 bg-brand-500 text-center"
         >
           <MdCreate />
-          <span className="ml-2">
-            Create
-          </span>
         </Link>
       </div>
       <div className="mt-2 h-full overflow-x-auto xl:overflow-hidden">
