@@ -18,11 +18,14 @@ import {
   MdWork,
   MdAccessTimeFilled,
   MdQrCode,
+  MdRequestPage,
+  MdDateRange,
   // MdDateRange,
 } from "react-icons/md";
 import QrGenerate from "views/ess/qrGenerate";
 import { IoIosQrScanner } from "react-icons/io";
 import QrScan from "views/ess/qrScan";
+import TimeCorrection from "views/ess/requests/timeCorrection/timeCorrection";
 
 const routes = [
   {
@@ -46,13 +49,21 @@ const routes = [
     icon: <MdAccessTimeFilled className="h-6 w-6" />,
     component: <Timesheet />,
   },
-  // {
-  //   name: "Leaves",
-  //   layout: "/ess",
-  //   path: "leaves",
-  //   icon: <MdDateRange className="h-6 w-6" />,
-  //   component: <Leaves />,
-  // },
+  {
+    name: "Time Corrections",
+    path: "time-corrections",
+    icon: <MdRequestPage className="h-6 w-6" />,
+    layout: "/ess",
+    sidebar: true,
+    component: <TimeCorrection />,
+  },
+  {
+    name: "Leaves",
+    layout: "/ess",
+    path: "leaves",
+    icon: <MdDateRange className="h-6 w-6" />,
+    // component: <Leaves />,
+  },
   {
     name: "Payrolls",
     layout: "/ess",
@@ -97,6 +108,6 @@ const routes = [
     icon: <MdWork className="h-6 w-6" />,
     component: <PayrollDetails />,
     sidebar: false,
-  },
+  }
 ];
 export default routes;

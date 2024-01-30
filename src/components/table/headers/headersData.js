@@ -91,3 +91,30 @@ export const payrollSummaryHeadersData = [
     accessor: "amount",
   }
 ];
+
+export const timeCorrectionsHeadersData = [
+  {
+    Header: "Date",
+    accessor: "date",
+  },
+  {
+    Header: "Title",
+    accessor: "title",
+  },
+  {
+    Header: "Clock In",
+    accessor: "clock_in",
+  },
+  {
+    Header: "Clock Out",
+    accessor: "clock_out",
+  },
+  {
+    Header: "Status",
+    accessor: "status",
+  },
+  {
+    Header: "Action",
+    accessor: "id",
+  }
+];
