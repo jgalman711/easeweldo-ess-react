@@ -8,12 +8,11 @@ import {
 import { useMemo } from "react";
 import SubtleBadge from "components/badge/SubtleBadge";
 import { Link } from "react-router-dom";
-import { MdOutlineArrowForward } from "react-icons/md";
+import { MdCreate, MdOutlineArrowForward } from "react-icons/md";
 import Pagination from "components/pagination/Pagination";
-import { IoIosAdd } from "react-icons/io";
 
 const TimeCorrectionsTable = (props) => {
-  const { columnsData, tableData, paginationData, onPageChange, title, viewAll } = props;
+  const { columnsData, tableData, paginationData, onPageChange, viewAll } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -40,18 +39,15 @@ const TimeCorrectionsTable = (props) => {
 
   return (
     <Card extra={"w-full h-full p-4 sm:overflow-x-auto"}>
-      <div className="relative flex items-center justify-end pr-4">
-        {title && (
-          <div className="mb-6 text-xl font-bold text-navy-700 dark:text-white">
-            {title}
-          </div>
-        )}
+      <div className="relative flex items-center justify-end">
         <Link
-          to='/ess/time-corrections/create'
-          className="text-white bg-brand-500 hover:bg-brand-600 focus:ring-4 focus:outline-none focus:ring-brand-100 font-medium rounded-full text-xl p-2.5 text-center inline-flex items-center me-2"
+          to="create"
+          className="mb-4 text-white px-4 py-2 linear flex cursor-pointer items-center justify-center rounded-xl font-bold transition duration-200 bg-brand-500"
         >
-          <IoIosAdd />
-          <span class="sr-only">Icon description</span>
+          <MdCreate />
+          <span className="ml-2">
+            Create
+          </span>
         </Link>
       </div>
       <div className="mt-2 h-full overflow-x-auto xl:overflow-hidden">
