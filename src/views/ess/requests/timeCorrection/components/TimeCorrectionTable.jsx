@@ -40,8 +40,8 @@ const TimeCorrectionsTable = (props) => {
   return (
     <Card extra={"w-full h-full p-4 sm:overflow-x-auto"}>
       <div className="flex items-center justify-between pr-4">
-        <div className="text-gray-600">
-          {/* <span>Your Label</span> */}
+        <div className="mb-6 text-xl font-bold text-navy-700 dark:text-white">
+          Your Requests
         </div>
         <Link
           to="create"

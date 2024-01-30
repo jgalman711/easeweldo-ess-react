@@ -19,7 +19,7 @@ import {
   MdAccessTimeFilled,
   MdQrCode,
   MdRequestPage,
-  MdDateRange,
+  MdMoreTime,
   // MdDateRange,
 } from "react-icons/md";
 import QrGenerate from "views/ess/qrGenerate";
@@ -45,16 +45,16 @@ const routes = [
     component: <Profile />,
   },
   {
-    name: "Timesheet",
+    name: "Time Records",
     layout: "/ess",
-    path: "timesheet",
+    path: "time-records",
     icon: <MdAccessTimeFilled className="h-6 w-6" />,
     component: <Timesheet />,
   },
   {
     name: "Time Corrections",
     path: "time-corrections",
-    icon: <MdRequestPage className="h-6 w-6" />,
+    icon: <MdMoreTime className="h-6 w-6" />,
     layout: "/ess",
     sidebar: true,
     component: <TimeCorrectionIndex />,
@@ -75,13 +75,13 @@ const routes = [
     sidebar: false,
     component: <TimeCorrectionCreate />,
   },
-  {
-    name: "Leaves",
-    layout: "/ess",
-    path: "leaves",
-    icon: <MdDateRange className="h-6 w-6" />,
+  // {
+    // name: "Leaves",
+    // layout: "/ess",
+    // path: "leaves",
+    // icon: <MdDateRange className="h-6 w-6" />,
     // component: <Leaves />,
-  },
+  // },
   {
     name: "Payrolls",
     layout: "/ess",
