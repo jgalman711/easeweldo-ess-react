@@ -25,7 +25,8 @@ import {
 import QrGenerate from "views/ess/qrGenerate";
 import { IoIosQrScanner } from "react-icons/io";
 import QrScan from "views/ess/qrScan";
-import TimeCorrection from "views/ess/requests/timeCorrection/timeCorrection";
+import TimeCorrectionIndex from "views/ess/requests/timeCorrection";
+import TimeCorrectionCreate from "views/ess/requests/timeCorrection/create";
 
 const routes = [
   {
@@ -55,7 +56,15 @@ const routes = [
     icon: <MdRequestPage className="h-6 w-6" />,
     layout: "/ess",
     sidebar: true,
-    component: <TimeCorrection />,
+    component: <TimeCorrectionIndex />,
+  },
+  {
+    name: "Time Corrections",
+    path: "time-corrections/create",
+    icon: <MdRequestPage className="h-6 w-6" />,
+    layout: "/ess",
+    sidebar: false,
+    component: <TimeCorrectionCreate />,
   },
   {
     name: "Leaves",

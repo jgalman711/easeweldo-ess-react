@@ -8,11 +8,11 @@ import {
 import { useMemo } from "react";
 import SubtleBadge from "components/badge/SubtleBadge";
 import { Link } from "react-router-dom";
-import { MdCreate, MdOutlineArrowForward } from "react-icons/md";
+import { MdCreate } from "react-icons/md";
 import Pagination from "components/pagination/Pagination";
 
 const TimeCorrectionsTable = (props) => {
-  const { columnsData, tableData, paginationData, onPageChange, viewAll } = props;
+  const { columnsData, tableData, paginationData, onPageChange } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -77,7 +77,7 @@ const TimeCorrectionsTable = (props) => {
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    let link = `/ess/time-correction/${encodeURIComponent(cell.value)}`;
+                    let link = `${encodeURIComponent(cell.value)}`;
                     if (cell.column.Header === "Status") {
                       data = (
                         <SubtleBadge
@@ -133,14 +133,6 @@ const TimeCorrectionsTable = (props) => {
           </tbody>
         </table>
       </div>
-      {viewAll && (
-        <div className="mt-1 flex items-center justify-end text-brand-500 border-t border-gray-200">
-          <Link to="/ess/payrolls" className="flex items-center p-3 font-semibold">
-            View All
-            <MdOutlineArrowForward className="mx-2 text-xl" />
-          </Link>
-        </div>
-      )}
       {paginationData && (
         <Pagination
           onPageChange={onPageChange}

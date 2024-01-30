@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import client from "api/axios"
 import TimeCorrectionsTable from "./components/TimeCorrectionTable";
 
-const TimeCorrection = () => {
+const TimeCorrectionIndex = () => {
   const [timeCorrectionData, setTimeCorrectionData] = useState([]);
   const [paginationData, setPaginationData] = useState([]);
   const companySlug = localStorage.getItem('companySlug');
@@ -50,4 +50,4 @@ const TimeCorrection = () => {
   );
 };
 
-export default TimeCorrection;
+export default TimeCorrectionIndex;
