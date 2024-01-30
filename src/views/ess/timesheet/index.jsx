@@ -101,6 +101,7 @@ const Timesheet = () => {
           tableData={timeRecordsData}
           paginationData={paginationData}
           onPageChange={onPageChange}
+          title="Daily Time Records"
         />
       </div>
     </div>

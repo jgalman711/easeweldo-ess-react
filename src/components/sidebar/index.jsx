@@ -3,11 +3,10 @@
 import { HiX } from "react-icons/hi";
 import Links from "./components/Links";
 import SidebarCard from "./components/SidebarCard";
-
 import routes from "routes.js";
-import eslogo from "assets/img/layout/easeweldo-workhub.png";
 
 const Sidebar = ({ open, onClose }) => {
+  const companyName = localStorage.getItem('companyName');
   return (
     <div
       className={`sm:none duration-175 linear fixed !z-50 flex min-h-full flex-col bg-white pb-10 shadow-2xl shadow-white/5 transition-all dark:!bg-navy-800 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
@@ -37,7 +36,7 @@ const Sidebar = ({ open, onClose }) => {
             src={eslogo}
             alt="Easeweldo Logo"
           /> */}
-          Demo Company
+          {companyName}
         </div>
       </div>
       <div className="mt-[70px] mb-7 h-px bg-gray-300 dark:bg-white/30" />

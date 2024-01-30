@@ -18,11 +18,16 @@ import {
   MdWork,
   MdAccessTimeFilled,
   MdQrCode,
+  MdRequestPage,
+  MdDateRange,
   // MdDateRange,
 } from "react-icons/md";
 import QrGenerate from "views/ess/qrGenerate";
 import { IoIosQrScanner } from "react-icons/io";
 import QrScan from "views/ess/qrScan";
+import TimeCorrectionIndex from "views/ess/requests/timeCorrection";
+import TimeCorrectionCreate from "views/ess/requests/timeCorrection/create";
+import TimeCorrectionEdit from "views/ess/requests/timeCorrection/edit";
 
 const routes = [
   {
@@ -46,13 +51,37 @@ const routes = [
     icon: <MdAccessTimeFilled className="h-6 w-6" />,
     component: <Timesheet />,
   },
-  // {
-  //   name: "Leaves",
-  //   layout: "/ess",
-  //   path: "leaves",
-  //   icon: <MdDateRange className="h-6 w-6" />,
-  //   component: <Leaves />,
-  // },
+  {
+    name: "Time Corrections",
+    path: "time-corrections",
+    icon: <MdRequestPage className="h-6 w-6" />,
+    layout: "/ess",
+    sidebar: true,
+    component: <TimeCorrectionIndex />,
+  },
+  {
+    name: "Time Corrections",
+    layout: "/ess",
+    path: "time-corrections/edit/:correctionId",
+    icon: <MdWork className="h-6 w-6" />,
+    component: <TimeCorrectionEdit />,
+    sidebar: false,
+  },
+  {
+    name: "Time Corrections",
+    path: "time-corrections/create",
+    icon: <MdRequestPage className="h-6 w-6" />,
+    layout: "/ess",
+    sidebar: false,
+    component: <TimeCorrectionCreate />,
+  },
+  {
+    name: "Leaves",
+    layout: "/ess",
+    path: "leaves",
+    icon: <MdDateRange className="h-6 w-6" />,
+    // component: <Leaves />,
+  },
   {
     name: "Payrolls",
     layout: "/ess",
@@ -97,6 +126,6 @@ const routes = [
     icon: <MdWork className="h-6 w-6" />,
     component: <PayrollDetails />,
     sidebar: false,
-  },
+  }
 ];
 export default routes;

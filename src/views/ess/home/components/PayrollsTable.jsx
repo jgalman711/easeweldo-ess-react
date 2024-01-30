@@ -11,7 +11,7 @@ const PayrollsTable = () => {
   useEffect(() => {
     const fetchPayrolls = async () => {
       try {
-        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls`);
+        const response = await client.get(`/companies/${companySlug}/employees/${employeeId}/payrolls?per_page=5`);
         setPayrollsData(response.data?.data);
       } catch (error) {
         console.error('Error fetching payrolls:', error);
