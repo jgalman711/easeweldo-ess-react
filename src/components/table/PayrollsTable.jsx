@@ -155,7 +155,7 @@ const PayrollsTable = (props) => {
           </Link>
         </div>
       )}
-      {paginationData && (
+      {paginationData?.total > paginationData?.per_page && (
         <Pagination
           onPageChange={onPageChange}
           paginationData={paginationData}
