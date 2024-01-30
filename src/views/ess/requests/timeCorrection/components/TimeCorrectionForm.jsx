@@ -117,7 +117,7 @@ const TimeCorrectionForm = ({ correctionId }) => {
           className="text-md flex font-bold underline items-center p-3 text-navy-800 hover:text-gray-800 dark:text-white mr-4"
           to="/ess/time-corrections"
         >
-          Cancel
+          Back
         </Link>
         <Button
           label={isLoading ? "Saving..." : "Save"}
