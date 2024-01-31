@@ -77,7 +77,7 @@ const TimeCorrectionsTable = (props) => {
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    let link = `edit/${encodeURIComponent(cell.value)}`;
+                    let link = `${encodeURIComponent(cell.value)}/edit`;
                     if (cell.column.Header === "Status") {
                       data = (
                         <SubtleBadge

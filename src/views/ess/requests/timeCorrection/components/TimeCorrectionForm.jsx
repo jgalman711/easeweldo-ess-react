@@ -5,16 +5,21 @@ import InputField from "components/fields/InputField";
 import TextField from "components/fields/TextField";
 import client from "api/axios";
 import { Link } from 'react-router-dom';
+import SubtleMultiAlert from 'components/alert/SubtleMultiAlert';
 
 const TimeCorrectionForm = ({ correctionId }) => {
+  const [title, setTitle] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [type, setType] = useState(null);
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
 
   const [formData, setFormData] = useState({
+    title: '',
     date: '',
     clock_in: '',
     clock_out: '',
-    remarks: ''
+    description: ''
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,6 +39,16 @@ const TimeCorrectionForm = ({ correctionId }) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  const clearForm = (e) => {
+    setFormData({
+      title: '',
+      date: '',
+      clock_in: '',
+      clock_out: '',
+      description: ''
+    });
+  }
+
   const handleSubmit = () => {
     setIsLoading(true);
     const updatedFormData = {
@@ -47,10 +62,15 @@ const TimeCorrectionForm = ({ correctionId }) => {
         .then(response => {
           setTimeout(() => {
             setIsLoading(false);
+            setTitle(response.data.message);
+            setDescription('');
+            setType('success')
           }, 1000);
         })
         .catch(error => {
-          console.error('Error updating time correction:', error);
+          setTitle('Error updating time correction:');
+          setDescription(error.response.data.errors);
+          setType('error')
           setIsLoading(false);
         });
     } else {
@@ -58,10 +78,16 @@ const TimeCorrectionForm = ({ correctionId }) => {
         .then(response => {
           setTimeout(() => {
             setIsLoading(false);
+            clearForm();
+            setTitle(response.data.message);
+            setDescription('');
+            setType('success')
           }, 1000);
         })
         .catch(error => {
-          console.error('Error creating time correction:', error);
+          setTitle('Error creating time correction:');
+          setDescription(error.response.data.errors);
+          setType('error')
           setIsLoading(false);
         });
     }
@@ -69,16 +95,30 @@ const TimeCorrectionForm = ({ correctionId }) => {
 
   return (
     <Card extra={"w-full p-4"}>
-      <div className="ml-3 pb-5 w-full">
+      <div className="ml-3 pb-5">
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
             {correctionId ? "Edit" : "Create"}
         </h4>
         <p className="mt-2 text-base text-gray-600">
           {correctionId ? "Update your time correction request." : "Make a new time correction request."}
         </p>
+        {title && <SubtleMultiAlert
+          type={type}
+          title={title}
+          description={description}
+          extraClass="mt-2"
+        />}
       </div>
       {/* Project 1 */}
       <div className="grid gap-4 grid-cols-2 rounded-2xl py-3">
+        <InputField
+          label="Title"
+          id="title"
+          type="text"
+          extra="col-span-2"
+          value={formData.title}
+          onChange={handleInputChange}
+        />
         <InputField
           label="Date"
           id="date"
@@ -104,11 +144,11 @@ const TimeCorrectionForm = ({ correctionId }) => {
           onChange={handleInputChange}
         />
         <TextField
-          label="Remarks"
-          id="remarks"
+          label="Other Details"
+          id="description"
           extra="col-span-2"
-          rows={2}
-          value={formData.remarks}
+          rows={3}
+          value={formData.description ?? ''}
           onChange={handleInputChange}
         />
       </div>

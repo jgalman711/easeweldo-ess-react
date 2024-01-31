@@ -62,7 +62,7 @@ const routes = [
   {
     name: "Time Corrections",
     layout: "/ess",
-    path: "time-corrections/edit/:correctionId",
+    path: "time-corrections/:correctionId/edit",
     icon: <MdWork className="h-6 w-6" />,
     component: <TimeCorrectionEdit />,
     sidebar: false,
