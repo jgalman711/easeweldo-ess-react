@@ -8,7 +8,6 @@ import PayrollDetails from "views/ess/payrollDetails";
 import Timesheet from "views/ess/timesheet";
 import SignIn from "views/auth/SignIn";
 import ForgotPassword from "views/auth/ForgotPassword";
-// import Leaves from "views/ess/leaves";
 
 // Icon Imports
 import {
@@ -20,6 +19,7 @@ import {
   MdQrCode,
   MdRequestPage,
   MdMoreTime,
+  MdDateRange,
   // MdDateRange,
 } from "react-icons/md";
 import QrGenerate from "views/ess/qrGenerate";
@@ -28,6 +28,9 @@ import QrScan from "views/ess/qrScan";
 import TimeCorrectionIndex from "views/ess/requests/timeCorrection";
 import TimeCorrectionCreate from "views/ess/requests/timeCorrection/create";
 import TimeCorrectionEdit from "views/ess/requests/timeCorrection/edit";
+import LeavesIndex from "views/ess/requests/leaves";
+import LeavesCreate from "views/ess/requests/leaves/create";
+import LeavesEdit from "views/ess/requests/leaves/edit";
 
 const routes = [
   {
@@ -75,13 +78,29 @@ const routes = [
     sidebar: false,
     component: <TimeCorrectionCreate />,
   },
-  // {
-    // name: "Leaves",
-    // layout: "/ess",
-    // path: "leaves",
-    // icon: <MdDateRange className="h-6 w-6" />,
-    // component: <Leaves />,
-  // },
+  {
+    name: "Leaves",
+    layout: "/ess",
+    path: "leaves",
+    icon: <MdDateRange className="h-6 w-6" />,
+    component: <LeavesIndex />,
+  },
+  {
+    name: "Create Leave",
+    path: "leaves/create",
+    icon: <MdDateRange className="h-6 w-6" />,
+    layout: "/ess",
+    sidebar: false,
+    component: <LeavesCreate />,
+  },
+  {
+    name: "Edit Leaves",
+    layout: "/ess",
+    path: "leaves/:leaveId/edit",
+    icon: <MdDateRange className="h-6 w-6" />,
+    component: <LeavesEdit />,
+    sidebar: false,
+  },
   {
     name: "Payrolls",
     layout: "/ess",

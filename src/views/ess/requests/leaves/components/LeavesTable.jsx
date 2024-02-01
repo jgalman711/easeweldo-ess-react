@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { MdCreate } from "react-icons/md";
 import Pagination from "components/pagination/Pagination";
 
-const TimeCorrectionsTable = (props) => {
+const LeavesTable = (props) => {
   const { columnsData, tableData, paginationData, onPageChange } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -41,7 +41,7 @@ const TimeCorrectionsTable = (props) => {
     <Card extra={"w-full h-full p-4 sm:overflow-x-auto"}>
       <div className="flex items-center justify-between pr-4">
         <div className="mb-6 text-xl font-bold text-navy-700 dark:text-white">
-          Your Requests
+          Leave Applications
         </div>
         <Link
           to="create"
@@ -85,10 +85,15 @@ const TimeCorrectionsTable = (props) => {
                           label={cell.value}
                         />
                       );
-                    } else if (cell.column.Header === "Date") {
+                    } else if (cell.column.Header === "Type") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          { cell?.value?.substring(0, 11) }
+                          {
+                            cell.value
+                              .split('_')
+                              .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                              .join(' ')
+                          }
                         </p>
                       );
                     } else if (cell.column.Header === "Action") {
@@ -143,4 +148,4 @@ const TimeCorrectionsTable = (props) => {
   );
 };
 
-export default TimeCorrectionsTable;
+export default LeavesTable;

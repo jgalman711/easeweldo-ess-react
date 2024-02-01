@@ -118,3 +118,22 @@ export const timeCorrectionsHeadersData = [
     accessor: "id",
   }
 ];
+
+export const leavesHeadersData = [
+  {
+    Header: "Type",
+    accessor: "type",
+  },
+  {
+    Header: "Date",
+    accessor: "formatted_date",
+  },
+  {
+    Header: "Status",
+    accessor: "status",
+  },
+  {
+    Header: "Action",
+    accessor: "id",
+  }
+];
