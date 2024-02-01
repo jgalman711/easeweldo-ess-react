@@ -1,29 +1,29 @@
-import { payrollsHeadersData } from "components/table/headers/headersData"
-import PayrollsTable from "components/table/PayrollsTable";
+import { leavesHeadersData } from "components/table/headers/headersData"
 import React, { useState, useEffect } from "react";
 import client from "api/axios"
+import LeavesTable from "./components/LeavesTable";
 
-const Payrolls = () => {
-  const [payrollsData, setPayrollsData] = useState([]);
+const LeavesIndex = () => {
+  const [leavesData, setTimeCorrectionData] = useState([]);
   const [paginationData, setPaginationData] = useState([]);
   const companySlug = localStorage.getItem('companySlug');
   const employeeId = localStorage.getItem('id');
   const itemsPerPage = 10; // for now static 10
-  const [url, setUrl] = useState(`/companies/${companySlug}/employees/${employeeId}/payrolls?per_page=${itemsPerPage}&page=1`);
-
+  const [url, setUrl] = useState(`/companies/${companySlug}/employees/${employeeId}/leaves?per_page=${itemsPerPage}&page=1`);
+  
   useEffect(() => {
-    const fetchPayrolls = async () => {
+    const fetchTimeCorrectionRequests = async () => {
       try {
         const response = await client.get(url);
-        setPayrollsData(response.data?.data);
+        setTimeCorrectionData(response.data?.data);
         setPaginationData(response.data?.meta);
       } catch (error) {
-        console.error('Error fetching payrolls:', error);
+        console.error('Error fetching records:', error);
       }
     };
 
     if (companySlug && employeeId) {
-      fetchPayrolls();
+        fetchTimeCorrectionRequests();
     } else {
       console.error('Company slug or employee ID not available');
     }
@@ -38,9 +38,9 @@ const Payrolls = () => {
   return (
     <div className="flex w-full flex-col gap-5">
       <div className="mt-5 grid grid-cols-1">
-        <PayrollsTable
-          columnsData={payrollsHeadersData}
-          tableData={payrollsData}
+        <LeavesTable
+          columnsData={leavesHeadersData}
+          tableData={leavesData}
           paginationData={paginationData}
           onPageChange={onPageChange}
         />
@@ -49,4 +49,4 @@ const Payrolls = () => {
   );
 };
 
-export default Payrolls;
+export default LeavesIndex;

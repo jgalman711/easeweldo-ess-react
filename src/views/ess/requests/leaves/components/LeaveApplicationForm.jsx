@@ -6,8 +6,9 @@ import TextField from "components/fields/TextField";
 import client from "api/axios";
 import { Link } from 'react-router-dom';
 import SubtleMultiAlert from 'components/alert/SubtleMultiAlert';
+import SelectField from 'components/fields/SelectField';
 
-const TimeCorrectionForm = ({ correctionId }) => {
+const LeaveApplicationForm = ({ leaveId }) => {
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
   const [type, setType] = useState(null);
@@ -15,17 +16,18 @@ const TimeCorrectionForm = ({ correctionId }) => {
   const employeeId = localStorage.getItem('id');
 
   const [formData, setFormData] = useState({
-    title: '',
+    description: '',
+    to_date: '',
+    from_date: '',
+    type: '',
     date: '',
-    clock_in: '',
-    clock_out: '',
-    description: ''
+    hours: ''
   });
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (correctionId) {
-      client.get(`/companies/${companySlug}/employees/${employeeId}/time-corrections/${correctionId}`)
+    if (leaveId) {
+      client.get(`/companies/${companySlug}/employees/${employeeId}/leaves/${leaveId}`)
         .then(response => {
           setFormData(response.data.data);
         })
@@ -33,7 +35,7 @@ const TimeCorrectionForm = ({ correctionId }) => {
           console.error('Error fetching time correction data:', error);
         });
     }
-  }, [correctionId, companySlug, employeeId]);
+  }, [leaveId, companySlug, employeeId]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -41,24 +43,19 @@ const TimeCorrectionForm = ({ correctionId }) => {
 
   const clearForm = (e) => {
     setFormData({
-      title: '',
+      description: '',
+      to_date: '',
+      from_date: '',
+      type: '',
       date: '',
-      clock_in: '',
-      clock_out: '',
-      description: ''
+      hours: ''
     });
   }
 
   const handleSubmit = () => {
     setIsLoading(true);
-    const updatedFormData = {
-      ...formData,
-      clock_in: `${formData.date} ${formData.clock_in}`,
-      clock_out: `${formData.date} ${formData.clock_out}`,
-    };
-
-    if (correctionId) {
-      client.put(`/companies/${companySlug}/employees/${employeeId}/time-corrections/${correctionId}`, updatedFormData)
+    if (leaveId) {
+      client.put(`/companies/${companySlug}/employees/${employeeId}/leaves/${leaveId}`, formData)
         .then(response => {
           setTimeout(() => {
             setIsLoading(false);
@@ -74,12 +71,12 @@ const TimeCorrectionForm = ({ correctionId }) => {
           setIsLoading(false);
         });
     } else {
-      client.post(`/companies/${companySlug}/employees/${employeeId}/time-corrections`, updatedFormData)
+      client.post(`/companies/${companySlug}/employees/${employeeId}/leaves`, formData)
         .then(response => {
           setTimeout(() => {
             setIsLoading(false);
             clearForm();
-            setTitle(response.data.message);
+            setTitle("Application has been submitted.");
             setDescription('');
             setType('success')
           }, 1000);
@@ -97,10 +94,10 @@ const TimeCorrectionForm = ({ correctionId }) => {
     <Card extra={"w-full p-4"}>
       <div className="ml-3 pb-5">
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-            {correctionId ? "Edit" : "Create"}
+            {leaveId ? "Edit" : "Create"}
         </h4>
         <p className="mt-2 text-base text-gray-600">
-          {correctionId ? "Update your time correction request." : "Make a new time correction request."}
+          {leaveId ? "Update your leave request." : "Make a new leave request."}
         </p>
         {title && <SubtleMultiAlert
           type={type}
@@ -109,44 +106,60 @@ const TimeCorrectionForm = ({ correctionId }) => {
           extraClass="mt-2"
         />}
       </div>
-      {/* Project 1 */}
-      <div className="grid gap-4 grid-cols-2 rounded-2xl py-3">
-        <InputField
-          label="Title"
-          id="title"
-          type="text"
-          extra="col-span-2"
-          value={formData.title}
-          onChange={handleInputChange}
-        />
-        <InputField
+      <div className="grid gap-4 grid-cols-12 rounded-2xl py-3">
+        {leaveId ? <InputField
           label="Date"
           id="date"
           type="date"
-          extra="col-span-2"
+          extra="col-span-12"
           value={formData.date}
           onChange={handleInputChange}
+        /> : <InputField
+            label="From Date"
+            id={leaveId ? undefined : "from_date"}
+            disabled={!!leaveId}
+            type="date"
+            extra="col-span-12 md:col-span-6"
+            value={leaveId ? formData.date : formData.from_date}
+            onChange={handleInputChange}
           />
-        <InputField
-          label="Clock In"
-          id="clock_in"
-          type="time"
-          extra="col-span-2 sm:col-span-1"
-          value={formData.clock_in}
+        }
+        {!leaveId && <InputField
+              label="To Date"
+              id={leaveId ? undefined : "to_date"}
+              disabled={!!leaveId}
+              type="date"
+              extra="col-span-12 md:col-span-6"
+              value={leaveId ? formData.date : formData.to_date}
+              onChange={handleInputChange}
+            />
+        }
+        <SelectField
+          label="Type"
+          id="type"
+          extra="col-span-8 md:col-span-10 xl:col-span-8"
+          value={formData.type}
+          options={[
+            { label: 'Vacation Leave', value: 'vacation_leave' },
+            { label: 'Sick Leave', value: 'sick_leave' },
+            { label: 'Emergency Leave', value: 'emergency_leave' },
+            { label: 'Leave Without Pay', value: 'leave_without_pay' }
+          ]}
           onChange={handleInputChange}
         />
         <InputField
-          label="Clock Out"
-          id="clock_out"
-          type="time"
-          extra="col-span-2 sm:col-span-1"
-          value={formData.clock_out}
+          label="Duration"
+          id="hours"
+          type="number"
+          placeholder="Hour/s"
+          extra="col-span-4 md:col-span-2 xl:col-span-4"
+          value={formData.hours}
           onChange={handleInputChange}
         />
         <TextField
-          label="Other Details"
+          label="Description"
           id="description"
-          extra="col-span-2"
+          extra="col-span-12"
           rows={3}
           value={formData.description ?? ''}
           onChange={handleInputChange}
@@ -155,7 +168,7 @@ const TimeCorrectionForm = ({ correctionId }) => {
       <div className="col-span-4 flex justify-end my-2.5">
         <Link
           className="text-md flex font-bold underline items-center p-3 text-navy-800 hover:text-gray-800 dark:text-white mr-4"
-          to="/ess/time-corrections"
+          to="/ess/leaves"
         >
           Back
         </Link>
@@ -172,4 +185,4 @@ const TimeCorrectionForm = ({ correctionId }) => {
   )
 }
 
-export default TimeCorrectionForm;
+export default LeaveApplicationForm;
